@@ -40,7 +40,7 @@ namespace WebStore.Controllers
 
 
         /// <summary>
-        /// Добавление или редактирование сотрудника
+        /// Редактирование сотрудника
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
