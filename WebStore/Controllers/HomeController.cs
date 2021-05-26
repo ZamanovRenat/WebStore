@@ -60,5 +60,56 @@ namespace WebStore.Controllers
             }
             return View(model);
         }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Account()
+        {
+            return View();
+        }
+
+        public IActionResult Cart()
+        {
+            return View();
+        }
+
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        public IActionResult MyAccount()
+        {
+            return View();
+        }
+
+        public IActionResult ProductDetails()
+        {
+            return View();
+        }
+
+        public IActionResult Shop()
+        {
+            return View();
+        }
+
+        public IActionResult ShopList()
+        {
+            return View();
+        }
+
+
+        public IActionResult WishList()
+        {
+            return View();
+        }
     }
 }
