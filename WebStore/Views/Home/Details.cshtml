@@ -1,20 +1,13 @@
 ﻿@model WebStore.Models.Employee
 
 @{
-    Layout = null;
+    ViewData["Title"] = $"Карточка сотрудника {Model.LastName } {Model.FirstName}";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
 
-<div>
-    <h4>Employee</h4>
+<div class="container">
+    <h4>@ViewData["Title"]</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -51,7 +44,6 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Employees">Назад к списку</a>
 </div>
-</body>
-</html>
+
