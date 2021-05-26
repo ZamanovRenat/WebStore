@@ -19,5 +19,24 @@ namespace WebStore.Controllers
         {
             return View();
         }
+        public IActionResult Employees()
+        {
+            return View(__Employees);
+        }
+        /// <summary>
+        /// Данные о сотруднике
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IActionResult Details(int id)
+        {
+            //Получение сотрудника по id
+            var employee = __Employees.FirstOrDefault(a => a.Id.Equals(id));
+            //Проверка есть ли такой сотрудник
+            if (employee is null)
+                return NotFound();
+
+            return View(employee);
+        }
     }
 }
