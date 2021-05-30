@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using WebStore.Models;
 
 namespace WebStore.Controllers
 {
