@@ -78,14 +78,6 @@ namespace WebStore.Controllers
             return RedirectToAction("Index");
         }
         /// <summary>
-        /// Создание сотрудника
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult Creat()
-        {
-            return View("Edit", new EmployeeViewModel());
-        }
-        /// <summary>
         /// Удаление сотрудника
         /// </summary>
         /// <param name="id"></param>

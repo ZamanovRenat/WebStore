@@ -18,24 +18,39 @@
                 <th>Возраст</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var employee in Model)
             {
-                <tr>
-                    <td>@employee.Id</td>
-                    <td>@employee.LastName</td>
-                    <td>@employee.FirstName</td>
-                    <td>@employee.Patronymic</td>
-                    <td>@employee.Age</td>
-                    <td><a asp-action="Details" asp-route-id="@employee.Id"><i class="fa-fa-info">Информация</i></a></td>
-                    <td><a asp-action="Edit" asp-route-id="@employee.Id"><i class="fa-fa-edit">Редактировать</i></a></td>
-                </tr>
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.LastName</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.Patronymic</td>
+                <td>@employee.Age</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@employee.Id">
+                        <i class="fa fa-info"></i>
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@employee.Id">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteConfirmed" asp-route-id="@employee.Id">
+                        <button type="submit">
+                            <i class="fa fa-trash-o text-danger"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
-
 </div>
 
     
