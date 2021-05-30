@@ -61,21 +61,24 @@ namespace WebStore.Controllers
         [HttpPost]
         public IActionResult Edit(EmployeeViewModel Model)
         {
-            var employee = new Employee
+            if (ModelState.IsValid)
             {
-                Id = Model.Id,
-                LastName = Model.LastName,
-                FirstName = Model.FirstName,
-                Patronymic = Model.Patronymic,
-                Age = Model.Age,
-            };
+                var employee = new Employee
+                {
+                    Id = Model.Id,
+                    LastName = Model.LastName,
+                    FirstName = Model.FirstName,
+                    Patronymic = Model.Patronymic,
+                    Age = Model.Age,
+                };
 
-            if (employee.Id == 0)
-                _EmployeesData.Add(employee);
-            else
-                _EmployeesData.Update(employee);
-
-            return RedirectToAction("Index");
+                if (employee.Id == 0)
+                    _EmployeesData.Add(employee);
+                else
+                    _EmployeesData.Update(employee);
+                return RedirectToAction("Index");
+            }
+            return View(Model);
         }
         /// <summary>
         /// Удаление сотрудника
