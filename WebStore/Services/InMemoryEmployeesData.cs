@@ -16,13 +16,13 @@ namespace WebStore.Services
             new Employee { Id = 3, LastName = "Сидоров", FirstName = "Сидор", Patronymic = "Сидорович", Age = 18 },
         };
         private int _CurrentMaxId;
-        private static object employee;
-        //Проверка есть ли такой сотрудник, если нет выбрасывает исключение
-        private static void CheckedNull()
-        {
-            if (employee is null) throw new ArgumentNullException(nameof(employee));
+        //private static object employee;
+        ////Проверка есть ли такой сотрудник, если нет выбрасывает исключение
+        //private static void CheckedNull()
+        //{
+        //    if (employee is null) throw new ArgumentNullException(nameof(employee));
 
-        }
+        //}
         public InMemoryEmployeesData()
         {
             _CurrentMaxId = __Employees.Max(i => i.Id);
@@ -38,7 +38,7 @@ namespace WebStore.Services
         }
         public int Add(Employee employee)
         {
-            CheckedNull();
+            if (employee is null) throw new ArgumentNullException(nameof(employee));
             if (__Employees.Contains(employee)) return employee.Id; //Для БД не нужно
             employee.Id = ++_CurrentMaxId;
             __Employees.Add(employee);
@@ -47,7 +47,7 @@ namespace WebStore.Services
         }
         public void Update(Employee employee)
         {
-            CheckedNull();
+            if (employee is null) throw new ArgumentNullException(nameof(employee));
 
             if (__Employees.Contains(employee)) return; //Для БД не нужно
 
