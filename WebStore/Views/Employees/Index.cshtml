@@ -24,14 +24,14 @@
                     <td>@employee.FirstName</td>
                     <td>@employee.Patronymic</td>
                     <td>@employee.Age</td>
-                    <td><a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id">Данные о сотруднике</a></td>
+                    <td><a asp-action="Details" asp-route-id="@employee.Id">Данные о сотруднике</a></td>
                 </tr>
             }
         </tbody>
     </table>
 
     <p>
-        <a asp-controller="Home" asp-action="Index">На главную</a>
+        <a asp-action="Index">На главную</a>
     </p>
 </div>
 
