@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title Магазин электроники | Malias</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- favicon
+    ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.ico">
+
+    <!-- Google Fonts
+    ============================================ -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+
+    @await Html.PartialAsync("Partial/_Styles")
+
+</head>
+<body>
+    <partial name="Partial/_Header" />
+
+    @RenderBody()
+
+    <partial name="Partial/_Footer" />
+    <partial name="Partial/_QuickView" />
+    <partial name="Partial/_Scripts" />
+</body>
+</html>

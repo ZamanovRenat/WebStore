@@ -18,7 +18,7 @@ namespace WebStore
         public void ConfigureServices(IServiceCollection services)
         {
             //Добавляем сервисы, необходимые для mvc
-            services.AddMvc();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -27,6 +27,8 @@ namespace WebStore
             {
                 app.UseDeveloperExceptionPage();
             }
+            //Поддержка статических файлов 
+            app.UseStaticFiles();
 
             app.UseRouting();
 

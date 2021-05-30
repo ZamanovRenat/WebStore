@@ -1,20 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebStore.Models;
 
 namespace WebStore.Controllers
 {
     public class HomeController : Controller
     {
-        private static readonly List<Employee> __Employees = new()
+        private readonly List<Employee> __Employees = new()
         {
             new Employee { Id = 1, LastName = "Иванов", FirstName = "Иван", Patronymic = "Иванович", Age = 27 },
             new Employee { Id = 2, LastName = "Петров", FirstName = "Пётр", Patronymic = "Петрович", Age = 31 },
             new Employee { Id = 3, LastName = "Сидоров", FirstName = "Сидор", Patronymic = "Сидорович", Age = 18 },
         };
+
         public IActionResult Index()
         {
             return View();
@@ -37,6 +36,80 @@ namespace WebStore.Controllers
                 return NotFound();
 
             return View(employee);
+        }
+
+
+        /// <summary>
+        /// Редактирование сотрудника
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        public IActionResult Edit(int? id)
+        {
+            Employee model;
+            if (id.HasValue)
+            {
+                model = __Employees.FirstOrDefault(a => a.Id.Equals(id)); 
+                if (model is null)
+                    return NotFound(); // возвращаем результат 404 Not Found
+            }
+            else
+            {
+                model = new Employee();
+            }
+            return View(model);
+        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Account()
+        {
+            return View();
+        }
+
+        public IActionResult Cart()
+        {
+            return View();
+        }
+
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        public IActionResult MyAccount()
+        {
+            return View();
+        }
+
+        public IActionResult ProductDetails()
+        {
+            return View();
+        }
+
+        public IActionResult Shop()
+        {
+            return View();
+        }
+
+        public IActionResult ShopList()
+        {
+            return View();
+        }
+
+
+        public IActionResult WishList()
+        {
+            return View();
         }
     }
 }
