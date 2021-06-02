@@ -23,6 +23,8 @@ namespace WebStore
             
             //Добавляем сервисы, необходимые для mvc
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            //Добавляем сервис управления брэндами и секциями
+            services.AddSingleton<IProductData, InMemoryProductData>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
