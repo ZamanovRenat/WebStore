@@ -23,4 +23,8 @@
     <None Include="Views\Shared\Partial\_QuickView.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebStore.Domain\WebStore.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
