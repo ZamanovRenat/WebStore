@@ -11,7 +11,7 @@
                     @foreach (var brand in Model)
                     {
                         <li>
-                            <a href="#">
+                            <a asp-controller="Catalog" asp-action="Index" asp-route-BrandId="@brand.Id">
                                 @brand.Name
                             </a>
                         </li>
