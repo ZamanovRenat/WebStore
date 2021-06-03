@@ -16,11 +16,18 @@ namespace WebStore.Data
         public static IEnumerable<Section> Sections { get; } = new[]
         {
             new Section {Id = 1, Name = "Phones", Order = 0},
+            new Section {Id = 2, Name = "Cameras", Order = 1},
+            new Section {Id = 3, Name = "TV&Audio", Order = 2},
+            new Section {Id = 4, Name = "Tablets", Order = 3, ParentId = 1},
+            new Section {Id = 5, Name = "Computers", Order = 4},
+            new Section {Id = 6, Name = "Watches", Order = 5, ParentId = 1},
         };
 
         public static IEnumerable<Brand> Brands { get; } = new[]
         {
-            new Brand {Id = 1, Name = "Apple", Order =0 },
+            new Brand {Id = 1, Name = "Apple", Order = 0 },
+            new Brand {Id = 2, Name = "Samsung", Order = 1 },
+            new Brand {Id = 3, Name = "Sony", Order = 2 },
         };
     }
 }
