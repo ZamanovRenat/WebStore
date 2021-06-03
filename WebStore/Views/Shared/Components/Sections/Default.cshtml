@@ -4,7 +4,7 @@
 <div class="left-category-menu hidden-sm hidden-xs">
     <div class="left-product-cat">
         <div class="category-heading">
-            <h2>categories</h2>
+            <h2>Categories</h2>
         </div>
         
         
@@ -15,9 +15,21 @@
                 if (parent_section.ChildSections.Count > 0)
                 {
                     <div class="arrow-plus">
-                        <a asp-controller="Home" asp-action="Shop">@parent_section.Name</a>
+
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordian" href="#@parent_section.GetHashCode()">
+                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                    @parent_section.Name
+                                </a>
+                            </h4>
+                        </div>
+
+                        @*<a asp-controller="Home" asp-action="Shop">@parent_section.Name</a>*@
                         <!--  MEGA MENU START -->
-                        <div class="cat-left-drop-menu">
+
+
+                        <div class="cat-left-drop-menu" id="@parent_section.GetHashCode()">
                             <div class="cat-left-drop-menu-left">
                                 <ul>
                                     @foreach (var child_section in parent_section.ChildSections)
