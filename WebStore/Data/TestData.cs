@@ -32,12 +32,12 @@ namespace WebStore.Data
         };
         public static IEnumerable<Product> Products { get; } = new[]
         {
-            new Product { Id = 1, Name = "IPhone 12", Price = 1025, ImageUrl = "~/img/product/IPhone12.jpg", Order = 0, SectionId = 1, BrandId = 1 },
-            new Product { Id = 2, Name = "Sony HD", Price = 1025, ImageUrl = "~/img/product/Sony.jpg", Order = 1, SectionId = 2, BrandId = 3 },
-            new Product { Id = 3, Name = "XIAOMI Mi TV", Price = 1025, ImageUrl = "~/img/product/Xiaomi.jpg", Order = 2, SectionId = 3, BrandId = 4 },
-            new Product { Id = 4, Name = "Apple iMac", Price = 1025, ImageUrl = "~/img/product/iMac.jpg", Order = 3, SectionId = 5, BrandId = 1 },
-            new Product { Id = 5, Name = "Samsung Watch", Price = 1025, ImageUrl = "~/img/product/Watch.jpg", Order = 4, SectionId = 6, BrandId = 2 },
-            new Product { Id = 5, Name = "Apple iPad", Price = 1025, ImageUrl = "~/img/product/iPad.jpg", Order = 5, SectionId = 4, BrandId = 1 },
+            new Product { Id = 1, Name = "IPhone 12", Price = 1025, ImageUrl = "IPhone12.jpg", Order = 0, SectionId = 1, BrandId = 1 },
+            new Product { Id = 2, Name = "Sony HD", Price = 1025, ImageUrl = "Sony.jpg", Order = 1, SectionId = 2, BrandId = 3 },
+            new Product { Id = 3, Name = "XIAOMI Mi TV", Price = 1025, ImageUrl = "Xiaomi.jpg", Order = 2, SectionId = 3, BrandId = 4 },
+            new Product { Id = 4, Name = "Apple iMac", Price = 1025, ImageUrl = "iMac.jpg", Order = 3, SectionId = 5, BrandId = 1 },
+            new Product { Id = 5, Name = "Samsung Watch", Price = 1025, ImageUrl = "Watch.jpg", Order = 4, SectionId = 6, BrandId = 2 },
+            new Product { Id = 5, Name = "Apple iPad", Price = 1025, ImageUrl = "iPad.jpg", Order = 5, SectionId = 4, BrandId = 1 },
         };
     }
 }
