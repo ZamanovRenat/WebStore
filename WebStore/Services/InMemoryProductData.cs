@@ -30,6 +30,7 @@ namespace WebStore.Services
 
             if(Filter?.BrandId is { } brand_id)
                 query = query.Where(product => product.BrandId == brand_id);
+            
             return query;
         }
     }
