@@ -21,7 +21,8 @@ namespace WebStore
         public void ConfigureServices(IServiceCollection services)
         {
             //Подключение контекста базы данных
-            services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer());
+            services.AddDbContext<WebStoreDB>(opt => 
+                opt.UseSqlServer(Configuration.GetConnectionString("MSSQL")));
             
             //Добавляем сервис управления сотрудниками
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
