@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebStore.DAL.Context;
+using WebStore.Data;
 using WebStore.Services;
+using WebStore.Services.InMemory;
 using WebStore.Services.Interfaces;
 
 namespace WebStore
@@ -24,6 +27,9 @@ namespace WebStore
             services.AddDbContext<WebStoreDB>(opt => 
                 opt.UseSqlServer(Configuration.GetConnectionString("MSSQL")));
             
+            //AddTransient удаляет объект после использования
+            services.AddTransient<WebStoreDBInitialiser>();
+            
             //Добавляем сервис управления сотрудниками
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             
@@ -33,8 +39,12 @@ namespace WebStore
             services.AddSingleton<IProductData, InMemoryProductData>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
         {
+            //Создание отдельной области через которую инициальзируется БД, после объект уничтожается
+            using (var scope = services.CreateScope())
+                scope.ServiceProvider.GetRequiredService<WebStoreDBInitialiser>().Initialize();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
