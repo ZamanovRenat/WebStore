@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebStore.DAL.Context;
 using WebStore.Services;
 using WebStore.Services.Interfaces;
 
@@ -18,6 +20,9 @@ namespace WebStore
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            //Подключение контекста базы данных
+            services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer());
+            
             //Добавляем сервис управления сотрудниками
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             
