@@ -9,6 +9,7 @@ using WebStore.DAL.Context;
 using WebStore.Data;
 using WebStore.Services;
 using WebStore.Services.InMemory;
+using WebStore.Services.InMemory.InSQL;
 using WebStore.Services.Interfaces;
 
 namespace WebStore
@@ -28,7 +29,7 @@ namespace WebStore
                 opt.UseSqlServer(Configuration.GetConnectionString("MSSQL")));
             
             //AddTransient удаляет объект после использования
-            services.AddTransient<WebStoreDBInitialiser>();
+            services.AddTransient<WebStoreDBInitializer>();
             
             //Добавляем сервис управления сотрудниками
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
@@ -36,14 +37,18 @@ namespace WebStore
             //Добавляем сервисы, необходимые для mvc
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             //Добавляем сервис управления брэндами и секциями
-            services.AddSingleton<IProductData, InMemoryProductData>();
+            //services.AddSingleton<IProductData, InMemoryProductData>();
+            if (Configuration["ProductsDataSource"] == "db")
+                services.AddScoped<IProductData, SqlProductData>();
+            else
+                services.AddSingleton<IProductData, InMemoryProductData>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
         {
             //Создание отдельной области через которую инициальзируется БД, после объект уничтожается
             using (var scope = services.CreateScope())
-                scope.ServiceProvider.GetRequiredService<WebStoreDBInitialiser>().Initialize();
+                scope.ServiceProvider.GetRequiredService<WebStoreDBInitializer>().Initialize();
 
             if (env.IsDevelopment())
             {
