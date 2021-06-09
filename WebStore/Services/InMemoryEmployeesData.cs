@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebStore.Data;
 using WebStore.Models;
 using WebStore.Services.Interfaces;
 
@@ -9,12 +10,7 @@ namespace WebStore.Services
     public class InMemoryEmployeesData : IEmployeesData
     {
         //[Route]
-        private readonly List<Employee> __Employees = new()
-        {
-            new Employee { Id = 1, LastName = "Иванов", FirstName = "Иван", Patronymic = "Иванович", Age = 27 },
-            new Employee { Id = 2, LastName = "Петров", FirstName = "Пётр", Patronymic = "Петрович", Age = 31 },
-            new Employee { Id = 3, LastName = "Сидоров", FirstName = "Сидор", Patronymic = "Сидорович", Age = 18 },
-        };
+
         private int _CurrentMaxId;
         //private static object employee;
         ////Проверка есть ли такой сотрудник, если нет выбрасывает исключение
@@ -25,23 +21,23 @@ namespace WebStore.Services
         //}
         public InMemoryEmployeesData()
         {
-            _CurrentMaxId = __Employees.Max(i => i.Id);
+            _CurrentMaxId = TestData.Employees.Max(i => i.Id);
         }
         public IEnumerable<Employee> GetAll()
         {
-            return __Employees;
+            return TestData.Employees;
         }
 
         public Employee Get(int id)
         {
-            return __Employees.SingleOrDefault(employee => employee.Id == id);
+            return TestData.Employees.SingleOrDefault(employee => employee.Id == id);
         }
         public int Add(Employee employee)
         {
             if (employee is null) throw new ArgumentNullException(nameof(employee));
-            if (__Employees.Contains(employee)) return employee.Id; //Для БД не нужно
+            if (TestData.Employees.Contains(employee)) return employee.Id; //Для БД не нужно
             employee.Id = ++_CurrentMaxId;
-            __Employees.Add(employee);
+            TestData.Employees.Add(employee);
 
             return employee.Id;
         }
@@ -49,7 +45,7 @@ namespace WebStore.Services
         {
             if (employee is null) throw new ArgumentNullException(nameof(employee));
 
-            if (__Employees.Contains(employee)) return; //Для БД не нужно
+            if (TestData.Employees.Contains(employee)) return; //Для БД не нужно
 
             var db_item = Get(employee.Id);
             if (db_item is null) return;
@@ -64,7 +60,7 @@ namespace WebStore.Services
         {
             var db_item = Get(id);
             if (db_item is null) return false;
-            return __Employees.Remove(db_item);
+            return TestData.Employees.Remove(db_item);
         }
     }
 }

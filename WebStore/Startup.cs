@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+п»їusing Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,11 +18,13 @@ namespace WebStore
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            //Добавляем сервис управления сотрудниками
+            //Р”РѕР±Р°РІР»СЏРµРј СЃРµСЂРІРёСЃ СѓРїСЂР°РІР»РµРЅРёСЏ СЃРѕС‚СЂСѓРґРЅРёРєР°РјРё
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             
-            //Добавляем сервисы, необходимые для mvc
+            //Р”РѕР±Р°РІР»СЏРµРј СЃРµСЂРІРёСЃС‹, РЅРµРѕР±С…РѕРґРёРјС‹Рµ РґР»СЏ mvc
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            //Р”РѕР±Р°РІР»СЏРµРј СЃРµСЂРІРёСЃ СѓРїСЂР°РІР»РµРЅРёСЏ Р±СЂСЌРЅРґР°РјРё Рё СЃРµРєС†РёСЏРјРё
+            services.AddSingleton<IProductData, InMemoryProductData>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -31,7 +33,7 @@ namespace WebStore
             {
                 app.UseDeveloperExceptionPage();
             }
-            //Поддержка статических файлов 
+            //РџРѕРґРґРµСЂР¶РєР° СЃС‚Р°С‚РёС‡РµСЃРєРёС… С„Р°Р№Р»РѕРІ 
             app.UseStaticFiles();
 
             app.UseRouting();

@@ -1,0 +1,220 @@
+﻿@model IEnumerable<WebStore.ViewModels.ProductViewModel>
+
+<div class="product-area">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- Start Product-Menu -->
+
+            <div class="product-filter">
+                <ul role="tablist">
+                    <li role="presentation" class="list">
+                        <a href="#display-1-1" role="tab" data-toggle="tab"></a>
+                    </li>
+                    <li role="presentation" class="grid active">
+                        <a href="#display-1-2" role="tab" data-toggle="tab"></a>
+                    </li>
+                </ul>
+                <div class="sort">
+                    <label>Sort By:</label>
+                    <select>
+                        <option value="#">Default</option>
+                        <option value="#">Name (A - Z)</option>
+                        <option value="#">Name (Z - A)</option>
+                        <option value="#">Price (Low > High)</option>
+                        <option value="#">Rating (Highest)</option>
+                        <option value="#">Rating (Lowest)</option>
+                        <option value="#">Name (A - Z)</option>
+                        <option value="#">Model (Z - A))</option>
+                        <option value="#">Model (A - Z)</option>
+                    </select>
+                </div>
+                <div class="limit">
+                    <label>Show:</label>
+                    <select>
+                        <option value="#">8</option>
+                        <option value="#">16)</option>
+                        <option value="#">24</option>
+                        <option value="#">40</option>
+                        <option value="#">80</option>
+                        <option value="#">100</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- End Product-Menu -->
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <!-- Start Product -->
+            <div class="product">
+                <div class="tab-content">
+                    <!-- Product -->
+                    <div role="tabpanel" class="tab-pane fade" id="display-1-1">
+                        <div class="row">
+                            <div class="listview">
+
+
+                                @foreach (var product in Model)
+                                {
+                                    <!-- Start Single-Product -->
+                                    <div class="single-product">
+                                        <div class="col-md-3 col-sm-4 col-xs-12">
+                                            <div class="label_new">
+                                                <span class="new">new</span>
+                                            </div>
+                                            <div class="sale-off">
+                                                <span class="sale-percent">-55%</span>
+                                            </div>
+                                            <div class="product-img">
+                                                <a href="#">
+                                                    <img class="primary-img" src="@product.ImageUrl" alt="@product.Name">
+                                                    <img class="secondary-img" src="~/img/product/mediam/10bg.jpg" alt="Product">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-sm-8 col-xs-12">
+                                            <div class="product-description">
+                                                <h5><a href="#">@product.Name</a></h5>
+                                                <div class="price-box">
+                                                    <span class="price">@product.Price.ToString("C")</span>
+                                                    <span class="old-price">@product.Price.ToString("C")</span>
+                                                </div>
+                                                <span class="rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                                <p class="description">Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva..</p>
+                                                <div class="product-action">
+                                                    <div class="button-group">
+                                                        <div class="product-button">
+                                                            <button><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                        </div>
+                                                        <div class="product-button-2">
+                                                            <a href="#" data-toggle="tooltip" title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                                                            <a href="#" data-toggle="tooltip" title="Compare"><i class="fa fa-signal"></i></a>
+                                                            <a href="#" class="modal-view" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="fa fa-search-plus"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single-Product -->
+                                }
+
+
+
+                            </div>
+                        </div>
+                        <!-- Start Pagination Area -->
+                        <div class="pagination-area">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div class="pagination">
+                                        <ul>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">></a></li>
+                                            <li><a href="#">>|</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="product-result">
+                                        <span>Showing 1 to 16 of 19 (2 Pages)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Pagination Area -->
+                    </div>
+                    <!-- End Product -->
+                    <!-- Start Product-->
+                    <div role="tabpanel" class="tab-pane fade in  active" id="display-1-2">
+                        <div class="row">
+
+                            @foreach (var product in Model)
+                            {
+                                <!-- Start Single-Product -->
+                                <div class="col-md-3 col-sm-4 col-xs-12">
+                                    <div class="single-product">
+                                        <div class="label_new">
+                                            <span class="new">new</span>
+                                        </div>
+                                        <div class="sale-off">
+                                            <span class="sale-percent">-55%</span>
+                                        </div>
+                                        <div class="product-img">
+                                            <a href="#">
+                                                <img class="primary-img" src="~/img/product/@product.ImageUrl" alt="@product.Name">
+                                                <img class="secondary-img" src="~/img/product/@product.ImageUrl" alt="@product.Name">
+                                            </a>
+                                        </div>
+                                        <div class="product-description">
+                                            <h5><a href="#">@product.Name</a></h5>
+                                            <div class="price-box">
+                                                <span class="price">@product.Price.ToString("C")</span>
+                                                <span class="old-price">@product.Price.ToString("C")</span>
+                                            </div>
+                                            <span class="rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </span>
+                                        </div>
+                                        <div class="product-action">
+                                            <div class="button-group">
+                                                <div class="product-button">
+                                                    <button><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </div>
+                                                <div class="product-button-2">
+                                                    <a href="#" data-toggle="tooltip" title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                                                    <a href="#" data-toggle="tooltip" title="Compare"><i class="fa fa-signal"></i></a>
+                                                    <a href="#" class="modal-view" data-toggle="modal" data-target="#productModal"><i class="fa fa-search-plus"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single-Product -->
+                            }
+
+
+
+                        </div>
+                        <!-- Start Pagination Area -->
+                        <div class="pagination-area">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div class="pagination">
+                                        <ul>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">></a></li>
+                                            <li><a href="#">>|</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="product-result">
+                                        <span>Showing 1 to 16 of 19 (2 Pages)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Pagination Area -->
+                    </div>
+                    <!-- End Product = TV -->
+                </div>
+            </div>
+            <!-- End Product -->
+        </div>
+    </div>
+</div>
