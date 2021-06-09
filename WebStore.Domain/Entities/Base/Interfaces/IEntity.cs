@@ -1,4 +1,6 @@
-﻿namespace WebStore.Domain.Entities.Base.Interfaces
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebStore.Domain.Entities.Base.Interfaces
 {
     public interface IEntity
     {

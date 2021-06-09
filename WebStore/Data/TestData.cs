@@ -16,11 +16,11 @@ namespace WebStore.Data
         public static IEnumerable<Section> Sections { get; } = new[]
         {
             new Section {Id = 1, Name = "Phones", Order = 0},
-            new Section {Id = 2, Name = "Cameras", Order = 1},
+            new Section {Id = 2, Name = "Cameras", Order = 6},
             new Section {Id = 3, Name = "TV&Audio", Order = 2},
             new Section {Id = 4, Name = "Tablets", Order = 3, ParentId = 1},
             new Section {Id = 5, Name = "Computers", Order = 4},
-            new Section {Id = 6, Name = "Watches", Order = 5, ParentId = 1},
+            new Section {Id = 6, Name = "Watches", Order = 5, ParentId = 2},
         };
 
         public static IEnumerable<Brand> Brands { get; } = new[]
@@ -37,7 +37,7 @@ namespace WebStore.Data
             new Product { Id = 3, Name = "XIAOMI Mi TV", Price = 1025, ImageUrl = "Xiaomi.jpg", Order = 2, SectionId = 3, BrandId = 4 },
             new Product { Id = 4, Name = "Apple iMac", Price = 1025, ImageUrl = "iMac.jpg", Order = 3, SectionId = 5, BrandId = 1 },
             new Product { Id = 5, Name = "Samsung Watch", Price = 1025, ImageUrl = "Watch.jpg", Order = 4, SectionId = 6, BrandId = 2 },
-            new Product { Id = 5, Name = "Apple iPad", Price = 1025, ImageUrl = "iPad.jpg", Order = 5, SectionId = 4, BrandId = 1 },
+            new Product { Id = 6, Name = "Apple iPad", Price = 1025, ImageUrl = "iPad.jpg", Order = 5, SectionId = 4, BrandId = 1 },
         };
     }
 }
