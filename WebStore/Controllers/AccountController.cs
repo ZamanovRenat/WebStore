@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using WebStore.Domain.Entities.Identity;
 using WebStore.ViewModels;
 
@@ -10,11 +12,16 @@ namespace WebStore.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly ILogger<AccountController> _logger;
 
-        public AccountController(UserManager<User> UserManager, SignInManager<User> SignInManager)
+        public AccountController(
+            UserManager<User> UserManager, 
+            SignInManager<User> SignInManager,
+            ILogger<AccountController> Logger)
         {
             _userManager = UserManager;
             _signInManager = SignInManager;
+            _logger = Logger;
         }
         public IActionResult Register()
         {
@@ -25,6 +32,8 @@ namespace WebStore.Controllers
         {
             if (!ModelState.IsValid) { return View(Model); }
 
+            _logger.LogInformation("Регистрация пользователя {0}", Model.UserName);
+
             var user = new User {UserName = Model.UserName};
             var register_result = await _userManager.CreateAsync(user, Model.Password);
 
@@ -32,13 +41,17 @@ namespace WebStore.Controllers
             {
                 await _signInManager.SignInAsync(user, false);
 
+                _logger.LogInformation("Пользователь {0} вошел в систему", Model.UserName);
+
                 return RedirectToAction("Index", "Home");
             }
 
             foreach (var error in register_result.Errors)
-            {
                 ModelState.AddModelError("", error.Description);
-            }
+            _logger.LogInformation("Ошибка при регистрации пользователя {0 в систему: {1}", 
+                Model.UserName,
+                string.Join(", ", register_result.Errors.Select(err => err.Description)));
+
 
             return View(Model);
         }
