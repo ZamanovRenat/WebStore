@@ -1,10 +1,11 @@
-﻿
+﻿@model WebStore.ViewModels.RegisterUserViewModel
 @{
     ViewData["Title"] = "Register";
 }
 
 <!-- START PAGE-CONTENT -->
 <section class="page-content">
+
     <!-- Start Account-Create-Area -->
     <div class="account-create-area">
         <div class="container">
@@ -16,7 +17,7 @@
                 </div>
             </div>
             <div class="account-create">
-                <form action="#">
+                <form asp-action="Register" asp-antiforgery="true">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="account-create-box">
@@ -24,24 +25,13 @@
                                 <div class="row">
                                     <div class="col-sm-4 col-xs-12">
                                         <div class="single-create">
-                                            <p>First Name <sup>*</sup></p>
-                                            <input class="form-control" type="text" name="firstname" />
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4 col-xs-12">
-                                        <div class="single-create">
-                                            <p>Last Name <sup>*</sup></p>
-                                            <input class="form-control" type="text" name="lastname" />
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4 col-xs-12">
-                                        <div class="single-create">
-                                            <p>Email Address <sup>*</sup></p>
-                                            <input class="form-control" type="email" name="email" />
+                                            <p>User Name <sup>*</sup></p>
+                                            <input asp-for="UserName" placeholder="User Name"/>
+                                            <span asp-validation-for="UserName"></span>
                                         </div>
                                     </div>
                                     <div class="col-xs-12">
-                                        <p class="for-newsletter"><input type="checkbox" /> Sign Up for Newsletter</p>
+                                        <p class="for-newsletter"><input type="checkbox"/> Sign Up for Newsletter</p>
                                     </div>
                                 </div>
                             </div>
@@ -51,13 +41,15 @@
                                     <div class="col-md-4 col-sm-6 col-xs-12">
                                         <div class="single-create">
                                             <p>Password <sup>*</sup></p>
-                                            <input class="form-control" type="password" name="firstname" />
+                                            <input asp-for="Password" placeholder="Password"/>
+                                            <span asp-validation-for="Password"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12">
                                         <div class="single-create">
                                             <p>Confirm Password <sup>*</sup></p>
-                                            <input class="form-control" type="password" name="firstname" />
+                                            <input asp-for="PasswordConfirm" placeholder="Confirm Password" />
+                                            <span asp-validation-for="PasswordConfirm"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -67,6 +59,7 @@
                                 <button type="submit" class="btn btn-primary floatright">submit</button>
                                 <a href="login.html" class="float-left"><span><i class="fa fa-angle-double-left"></i></span> Back</a>
                             </div>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         </div>
                     </div>
                 </form>
