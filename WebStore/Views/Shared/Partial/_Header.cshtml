@@ -35,10 +35,11 @@
                     <!-- Start Top-Link -->
                     <div class="top-link">
                         <ul class="link">
-                            <li><a asp-controller="Home" asp-action="MyAccount"><i class="fa fa-user"></i> My Account</a></li>
+                            @*<li><a href="#"><i class="fa fa-user"></i> @User.Identity?.Name</a></li>*@
+                            <li><a asp-controller="Home" asp-action="MyAccount"><i class="fa fa-user"></i> @User.Identity?.Name</a></li>
                             <li><a asp-controller="Home" asp-action="WishList"><i class="fa fa-heart"></i> Wish List (0)</a></li>
-                            <li><a asp-controller="Home" asp-action="Checkout"><i class="fa fa-share"></i> Login</a></li>
-                            <li><a asp-controller="Home" asp-action="Account"><i class="fa fa-unlock-alt"></i> Register</a></li>
+                            <li><a asp-controller="Account" asp-action="Login"><i class="fa fa-share"></i> Login</a></li>
+                            <li><a asp-controller="Account" asp-action="Register"><i class="fa fa-unlock-alt"></i> Register</a></li>
                         </ul>
                     </div>
                     <!-- End Top-Link -->
