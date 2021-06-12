@@ -15,19 +15,11 @@ namespace WebStore.Services.InMemory.InSQL
     {
         private readonly WebStoreDB _db;
 
-        public SqlProductData(WebStoreDB db)
-        {
-            _db = db;
-        }
-        public IEnumerable<Section> GetSections()
-        {
-            return _db.Sections;
-        }
+        public SqlProductData(WebStoreDB db) => _db = db;
 
-        public IEnumerable<Brand> GetBrands()
-        {
-            return  _db.Brands;
-        }
+        public IEnumerable<Section> GetSections() => _db.Sections;
+
+        public IEnumerable<Brand> GetBrands() => _db.Brands;
 
         public IEnumerable<Product> GetProducts(ProductFilter Filter = null)
         {
@@ -35,21 +27,23 @@ namespace WebStore.Services.InMemory.InSQL
                 .Include(p => p.Brand)
                 .Include(p => p.Section);
 
-            if (Filter?.SectionId is { } section_id)
-                query = query.Where(product => product.SectionId == section_id);
+            if (Filter?.Ids?.Length > 0)
+                query = query.Where(product => Filter.Ids.Contains(product.Id));
+            else
+            {
+                if (Filter?.SectionId is { } section_id)
+                    query = query.Where(product => product.SectionId == section_id);
 
-            if (Filter?.BrandId is { } brand_id)
-                query = query.Where(product => product.BrandId == brand_id);
+                if (Filter?.BrandId is { } brand_id)
+                    query = query.Where(product => product.BrandId == brand_id);
+            }
 
             return query;
         }
 
-        public Product GetProductById(int Id)
-        {
-            return _db.Products
-                    .Include(p => p.Brand)
-                    .Include(p => p.Section)
-                    .SingleOrDefault(p => p.Id == Id);
-        }
+        public Product GetProductById(int Id) => _db.Products
+            .Include(p => p.Brand)
+            .Include(p => p.Section)
+            .SingleOrDefault(p => p.Id == Id);
     }
 }
