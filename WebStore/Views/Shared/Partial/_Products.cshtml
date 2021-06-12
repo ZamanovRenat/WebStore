@@ -173,7 +173,7 @@
                                         <div class="product-action">
                                             <div class="button-group">
                                                 <div class="product-button">
-                                                    <button><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
                                                 </div>
                                                 <div class="product-button-2">
                                                     <a href="#" data-toggle="tooltip" title="Wishlist"><i class="fa fa-heart-o"></i></a>
