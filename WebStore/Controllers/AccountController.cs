@@ -39,9 +39,16 @@ namespace WebStore.Controllers
 
             if (register_result.Succeeded)
             {
+                _logger.LogInformation("Пользователь {0} успешно зарегистрирован", user.UserName);
+
+                await _userManager.AddToRoleAsync(user, Role.Users);
+
+                _logger.LogInformation("Пользователю {0} назначена роль {1}",
+                    user.UserName, Role.Users);
+
                 await _signInManager.SignInAsync(user, false);
 
-                _logger.LogInformation("Пользователь {0} вошел в систему", Model.UserName);
+                _logger.LogInformation("Пользователь {0} автоматически вошёл в систему после регистрации", user.UserName);
 
                 return RedirectToAction("Index", "Home");
             }
