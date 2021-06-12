@@ -1,0 +1,16 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.css",
+    "inptuFiles": [
+      "wwwwroot/css/main.css",
+      "wwwwroot/css/animate.css",
+      "wwwwroot/css/meanmenu.min.css",
+      "wwwwroot/css/nivo-slider.css",
+      "wwwwroot/css/owl.carousel.css",
+      "wwwwroot/css/owl.theme.css",
+      "wwwwroot/css/owl.transitions.css",
+      "wwwwroot/css/responsive.css",
+      "wwwwroot/css/style.css"
+    ]
+  }
+]
