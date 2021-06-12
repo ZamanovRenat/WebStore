@@ -168,6 +168,7 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star-o"></i>
                                             </span>
+                                            <a asp-controller="Catalog" asp-action="Details" asp-route-Id="@product.Id">@product.Name</a>
                                         </div>
                                         <div class="product-action">
                                             <div class="button-group">
@@ -176,7 +177,7 @@
                                                 </div>
                                                 <div class="product-button-2">
                                                     <a href="#" data-toggle="tooltip" title="Wishlist"><i class="fa fa-heart-o"></i></a>
-                                                    <a href="#" data-toggle="tooltip" title="Compare"><i class="fa fa-signal"></i></a>
+                                                    <a asp-controller="Catalog" asp-action="Details" asp-route-Id="@product.Id" title="Compare"><i class="fa fa-signal"></i></a>
                                                     <a href="#" class="modal-view" data-toggle="modal" data-target="#productModal"><i class="fa fa-search-plus"></i></a>
                                                 </div>
                                             </div>
