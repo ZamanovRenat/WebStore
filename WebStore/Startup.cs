@@ -10,6 +10,7 @@ using WebStore.DAL.Context;
 using WebStore.Data;
 using WebStore.Domain.Entities.Identity;
 using WebStore.Services;
+using WebStore.Services.InCookies;
 using WebStore.Services.InMemory;
 using WebStore.Services.InMemory.InSQL;
 using WebStore.Services.Interfaces;
@@ -73,6 +74,9 @@ namespace WebStore
             //Добавляем сервис управления сотрудниками
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             
+            //Добавление сервиса корзины
+            services.AddScoped<ICartService, InCookiesCartService>();
+
             //Добавляем сервисы, необходимые для mvc
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             //Добавляем сервис управления брэндами и секциями
