@@ -1,20 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebStore.DAL.Context;
+using WebStore.Domain.Entities.Identity;
 
 namespace WebStore.Data
 {
     public class WebStoreDBInitializer
     {
         private readonly WebStoreDB _db;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<Role> _role;
         private readonly ILogger<WebStoreDBInitializer> _Logger;
 
-        public WebStoreDBInitializer(WebStoreDB db, ILogger<WebStoreDBInitializer> Logger)
+        public WebStoreDBInitializer(
+            WebStoreDB db, 
+            UserManager<User> UserManager,
+            RoleManager<Role> Role,
+            ILogger<WebStoreDBInitializer> Logger)
         {
             _db = db;
+            _userManager = UserManager;
+            _role = Role;
             _Logger = Logger;
         }
 
@@ -40,6 +53,16 @@ namespace WebStore.Data
             catch (Exception e)
             {
                 _Logger.LogError(e, "Ошибка при инициализации товаров в БД");
+                throw;
+            }
+
+            try
+            {
+                InitializeIdentityAsync().GetAwaiter().GetResult();
+            }
+            catch (Exception e)
+            {
+                _Logger.LogError(e, "Ошибка при инициализации данных в БД системы Identity");
                 throw;
             }
 
@@ -94,6 +117,57 @@ namespace WebStore.Data
             }
 
             _Logger.LogInformation("Инициализация товаров выполнена за. {0} c", timer.Elapsed.TotalSeconds);
+        }
+
+        private async Task InitializeIdentityAsync()
+        {
+            _Logger.LogInformation("Инициализация БД системы Identity");
+            var timer = Stopwatch.StartNew();
+
+            async Task CheckRole(string RoleName)
+            {
+                if (!await _role.RoleExistsAsync(RoleName))
+                {
+                    _Logger.LogInformation("Роль {0} отсутствует. Создаю...", RoleName);
+                    await _role.CreateAsync(new Role { Name = RoleName });
+                    _Logger.LogInformation("Роль {0} создана успешно", RoleName);
+                }
+            }
+
+            await CheckRole(Role.Administrators);
+            await CheckRole(Role.Users);
+
+            if (await _userManager.FindByNameAsync(User.Administrator) is null)
+            {
+                _Logger.LogInformation("Пользователь {0} отсутствует. Создаю...", User.Administrator);
+
+                var admin = new User
+                {
+                    UserName = User.Administrator
+                };
+
+                var creation_result = await _userManager.CreateAsync(admin, User.DefaultAdminPassword);
+                if (creation_result.Succeeded)
+                {
+                    _Logger.LogInformation("Пользователь {0} успешно создан", User.Administrator);
+
+                    await _userManager.AddToRoleAsync(admin, Role.Administrators);
+
+                    _Logger.LogInformation("Пользователь {0} наделён ролью {1}",
+                        User.Administrator, Role.Administrators);
+                }
+                else
+                {
+                    var errors = creation_result.Errors.Select(e => e.Description).ToArray();
+                    _Logger.LogError("Учётная запись администратора не создана по причине: {0}",
+                        string.Join(",", errors));
+
+                    throw new InvalidOperationException($"Ошибка при создании пользователя {User.Administrator}:{string.Join(",", errors)}");
+                }
+            }
+
+            _Logger.LogInformation("Инициализация данных БД системы Identity выполнена за {0} c",
+                timer.Elapsed.TotalSeconds);
         }
     }
 }
