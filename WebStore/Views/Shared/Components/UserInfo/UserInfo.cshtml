@@ -1,0 +1,15 @@
+﻿@using WebStore.Domain.Entities.Identity
+<div class="top-link">
+    <ul class="link">
+
+        @if (User.IsInRole(Role.Administrators))
+        {
+            <li><a asp-controller="Home" asp-action="MyAccount"><i class="fa fa-keyboard-o"></i>Админка</a></li>
+        }
+
+        <li><a asp-controller="Home" asp-action="MyAccount"><i class="fa fa-user"></i>@User.Identity!.Name</a></li>
+        <li><a asp-controller="Home" asp-action="WishList"><i class="fa fa-heart"></i> Корзина</a></li>
+        <li><a asp-controller="Account" asp-action="Logout"><i class="fa fa-share"></i> Logout</a></li>
+
+    </ul>
+</div>
