@@ -1,4 +1,4 @@
-﻿@model WebStore.ViewModels.CartViewModel
+﻿@model WebStore.ViewModels.CartOrderViewModel
 @{
     ViewBag.Title = "Корзина";
 }
@@ -240,7 +240,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach (var (product, quantity) in Model.Items)
+                                    @foreach (var (product, quantity) in Model.Cart.Items)
                                     {
                                         <tr>
                                             <td class="text-center">
@@ -255,7 +255,7 @@
                                                 <a asp-controller="Cart" asp-action="Decrement" asp-route-id="@product.Id">-</a>
                                             </td>
                                             <td class="text-right">@product.Price.ToString("C")</td>
-                                            <td class="text-right">@Model.TotalPrice.ToString("C")</td>
+                                            <td class="text-right">@Model.Cart.TotalPrice.ToString("C")</td>
                                         </tr>
 
                                     }
