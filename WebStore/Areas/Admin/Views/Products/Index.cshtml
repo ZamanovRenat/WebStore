@@ -32,7 +32,8 @@
                 <td>@Html.DisplayFor(_ => brand_name)</td>
                 <td>@Html.DisplayFor(_ => product.Section.Name)</td>
                 <td>
-                    <img src="~/images/shop/@product.ImageUrl" width="50" alt="@product.Name" />
+                    <img src="@product.ImageUrl" alt="@product.Name" width="50" />
+                    @*<img class="primary-img" src="@product.ImageUrl" alt="@product.Name">*@
                 </td>
                 <td>@Html.DisplayFor(_ => product.Price)</td>
                 <td>
