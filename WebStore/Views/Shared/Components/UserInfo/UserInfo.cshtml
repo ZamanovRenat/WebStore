@@ -4,7 +4,7 @@
 
         @if (User.IsInRole(Role.Administrators))
         {
-            <li><a asp-controller="Home" asp-action="MyAccount"><i class="fa fa-keyboard-o"></i>Админка</a></li>
+            <li><a asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="fa fa-keyboard-o"></i>Админка</a></li>
         }
 
         <li><a asp-controller="Home" asp-action="MyAccount"><i class="fa fa-user"></i>@User.Identity!.Name</a></li>
