@@ -14,7 +14,10 @@ namespace WebStore.ViewModels
         public string ImageUrl { get; set; }
 
         public string Section { get; set; }
+        public int SectionId { get; set; }
 
         public string Brand { get; set; }
+        public int BrandId { get; set; }
+        public int Order { get; set; }
     }
 }

@@ -45,5 +45,39 @@ namespace WebStore.Services.InMemory.InSQL
             .Include(p => p.Brand)
             .Include(p => p.Section)
             .SingleOrDefault(p => p.Id == Id);
+
+        public int Add(Product product)
+        {
+            if (product is null) throw new ArgumentNullException(nameof(product));
+
+            _db.Add(product);
+
+            _db.SaveChanges();
+
+            return product.Id;
+        }
+
+        public void Update(Product product)
+        {
+            if (product is null) throw new ArgumentNullException(nameof(product));
+
+            _db.Update(product);
+
+            _db.SaveChanges();
+        }
+
+        public bool Delete(int id)
+        {
+            var product = _db.Products
+                .Select(e => new Product { Id = e.Id })
+                .FirstOrDefault(e => e.Id == id);
+            if (product is null) return false;
+
+            _db.Remove(product);
+
+            _db.SaveChanges();
+
+            return true;
+        }
     }
 }
