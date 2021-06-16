@@ -1,4 +1,5 @@
-﻿
+﻿@model WebStore.ViewModels.ProductViewModel
+
 @{
     ViewData["Title"] = "ProductDetails";
 }
@@ -249,7 +250,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="toch-photo">
-                                                <a href="#"><img src="~/img/toch/1.jpg" data-imagezoom="true" alt="#" /></a>
+                                                <a href="#"><img src="~/img/product/@Model.ImageUrl" data-imagezoom="true" alt="#" /></a>
                                             </div>
                                         </div>
                                     </div>
@@ -260,7 +261,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="toch-photo">
-                                                <a href="#"><img src="~/img/toch/2.jpg" data-imagezoom="true" alt="#" /></a>
+                                                <a href="#"><img src="~/img/product/@Model.ImageUrl" data-imagezoom="true" alt="#" /></a>
                                             </div>
                                         </div>
                                     </div>
@@ -271,7 +272,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="toch-photo">
-                                                <a href="#"><img src="~/img/toch/3.jpg" data-imagezoom="true" alt="#" /></a>
+                                                <a href="#"><img src="~/img/product/@Model.ImageUrl" data-imagezoom="true" alt="#" /></a>
                                             </div>
                                         </div>
                                     </div>
@@ -282,7 +283,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="toch-photo">
-                                                <a href="#"><img src="~/img/toch/4.jpg" data-imagezoom="true" alt="#" /></a>
+                                                <a href="#"><img src="~/img/product/@Model.ImageUrl" data-imagezoom="true" alt="#" /></a>
                                             </div>
                                         </div>
                                     </div>
@@ -301,7 +302,7 @@
                             <!-- End Toch-prond-Menu -->
                         </div>
                         <div class="col-md-7 col-sm-7 col-xs-12">
-                            <h2 class="title-product"> Toch Prond</h2>
+                            <h2 class="title-product">@Model.Name</h2>
                             <div class="about-toch-prond">
                                 <p>
                                     <span class="rating">
@@ -318,7 +319,7 @@
                                 <hr />
                                 <p class="short-description">Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nul... </p>
                                 <hr />
-                                <span class="current-price">$100.00</span>
+                                <span class="current-price">@Model.Price.ToString("C")</span>
                                 <span class="item-stock">Availability: <span class="text-stock">In Stock</span></span>
                             </div>
                             <div class="about-product">
@@ -363,9 +364,7 @@
                             <div class="product-quantity">
                                 <span>Qty</span>
                                 <input type="number" placeholder="1" />
-                                <button type="submit" class="toch-button toch-add-cart">Add to Cart</button>
-                                <button type="submit" class="toch-button toch-wishlist">wishlist</button>
-                                <button type="submit" class="toch-button toch-compare">Compare</button>
+                                <a asp-controller="Home" asp-action="Cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 <hr />
                             </div>
                         </div>
@@ -617,7 +616,7 @@
             </div>
         </div>
     </div>
-    <partial name="Partial/_BrandLogo" />
-    <partial name="Partial/_SubscribeArea" />
+        <partial name="Partial/_BrandLogo" />
+        <partial name="Partial/_SubscribeArea" />
 </section>
 <!-- END PAGE-CONTENT -->

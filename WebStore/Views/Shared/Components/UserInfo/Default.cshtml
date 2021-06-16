@@ -1,0 +1,9 @@
+﻿<div class="top-link">
+    <ul class="link">
+        @*<li><a href="#"><i class="fa fa-user"></i> @User.Identity?.Name</a></li>*@
+        <li><a asp-controller="Home" asp-action="MyAccount"><i class="fa fa-user"></i> @User.Identity!.Name</a></li>
+        <li><a asp-controller="Cart" asp-action="Index"><i class="fa fa-heart"></i> Cart (0)</a></li>
+        <li><a asp-controller="Account" asp-action="Login"><i class="fa fa-share"></i> Login</a></li>
+        <li><a asp-controller="Account" asp-action="Register"><i class="fa fa-unlock-alt"></i> Register</a></li>
+    </ul>
+</div>

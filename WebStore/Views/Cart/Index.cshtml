@@ -1,6 +1,6 @@
-﻿
+﻿@model WebStore.ViewModels.CartViewModel
 @{
-    ViewData["Title"] = "Cart";
+    ViewBag.Title = "Корзина";
 }
 
 <!-- START PAGE-CONTENT -->
@@ -240,54 +240,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach (var (product, quantity) in Model.Items)
+                                    {
                                         <tr>
                                             <td class="text-center">
-                                                <a href="#"><img class="img-thumbnail" src="~/img/product/cart/1.jpg" alt="#" /></a>
+                                                <a href="#"><img class="img-thumbnail" src="~/img/product/@product.ImageUrl" alt="#" /></a>
                                             </td>
                                             <td class="text-left">
-                                                <a href="#">More-Or-Less</a>
+                                                <a href="#">@product.Name</a>
                                             </td>
-                                            <td class="text-left">Product 14</td>
+                                            <td class="text-left"></td>
                                             <td class="text-left">
-                                                <div class="btn-block cart-put">
-                                                    <input class="form-control" type="number" placeholder="1" />
-                                                    <div class="input-group-btn cart-buttons">
-                                                        <button class="btn btn-primary" data-toggle="tooltip" title="Update">
-                                                            <i class="fa fa-refresh"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger" data-toggle="tooltip" title="Remove">
-                                                            <i class="fa fa-times-circle"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                                <a asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id">+</a>
+                                                <a asp-controller="Cart" asp-action="Decrement" asp-route-id="@product.Id">-</a>
                                             </td>
-                                            <td class="text-right">$100.00</td>
-                                            <td class="text-right">$100.00</td>
+                                            <td class="text-right">@product.Price.ToString("C")</td>
+                                            <td class="text-right">@Model.TotalPrice.ToString("C")</td>
                                         </tr>
-                                        <tr>
-                                            <td class="text-center">
-                                                <a href="#"><img class="img-thumbnail" src="~/img/product/cart/2.jpg" alt="#" /></a>
-                                            </td>
-                                            <td class="text-left">
-                                                <a href="#">More-Or-Less</a>
-                                            </td>
-                                            <td class="text-left">Product 14</td>
-                                            <td class="text-left">
-                                                <div class="btn-block cart-put">
-                                                    <input class="form-control" type="number" placeholder="1" />
-                                                    <div class="input-group-btn cart-buttons">
-                                                        <button class="btn btn-primary" data-toggle="tooltip" title="Update">
-                                                            <i class="fa fa-refresh"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger" data-toggle="tooltip" title="Remove">
-                                                            <i class="fa fa-times-circle"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-right">$100.00</td>
-                                            <td class="text-right">$100.00</td>
-                                        </tr>
+
+                                    }
                                     </tbody>
                                 </table>
                             </div>

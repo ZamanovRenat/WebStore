@@ -1,0 +1,32 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.css",
+    "inputFiles": [
+      "wwwwroot/css/main.css",
+      "wwwwroot/css/animate.css",
+      "wwwwroot/css/meanmenu.min.css",
+      "wwwwroot/css/nivo-slider.css",
+      "wwwwroot/css/owl.carousel.css",
+      "wwwwroot/css/owl.theme.css",
+      "wwwwroot/css/owl.transitions.css",
+      "wwwwroot/css/responsive.css",
+      "wwwwroot/css/style.css"
+    ]
+  },
+  {
+    "outputFileName" : "wwwroot/js/site.js",
+    "inputFiles": [
+      "wwwroot/js/countdon.min.js",
+      "wwwroot/js/imagezoom.js",
+      "wwwroot/js/main.js",
+      "wwwroot/js/owl.carousel.min.js",
+      "wwwroot/js/plugins.js",
+      "wwwroot/js/wow.min.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+      "gzip": true
+    }
+  }
+]
