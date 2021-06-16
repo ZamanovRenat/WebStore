@@ -7,7 +7,7 @@
             <li><a asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="fa fa-keyboard-o"></i>Админка</a></li>
         }
 
-        <li><a asp-controller="Home" asp-action="MyAccount"><i class="fa fa-user"></i>@User.Identity!.Name</a></li>
+        <li><a asp-controller="UserProfile" asp-action="Index"><i class="fa fa-user"></i> @User.Identity!.Name</a></li>
         <li><a asp-controller="Cart" asp-action="Index"><i class="fa fa-heart"></i> Cart</a></li>
         <li><a asp-controller="Account" asp-action="Logout"><i class="fa fa-share"></i> Logout</a></li>
 
