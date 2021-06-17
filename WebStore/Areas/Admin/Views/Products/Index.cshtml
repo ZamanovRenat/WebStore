@@ -4,6 +4,11 @@
 }
 
 <div class="container">
+    
+    <p>
+        <a asp-action="Create" class="btn btn-default">Создать 1</a>
+    </p>
+
     <table class="table">
         <thead>
         <tr>
@@ -32,7 +37,7 @@
                 <td>@Html.DisplayFor(_ => brand_name)</td>
                 <td>@Html.DisplayFor(_ => product.Section.Name)</td>
                 <td>
-                    <img src="@product.ImageUrl" alt="@product.Name" width="50" />
+                    <img src="@product.ImageUrl" alt="@product.Name" width="50"/>
                     @*<img class="primary-img" src="@product.ImageUrl" alt="@product.Name">*@
                 </td>
                 <td>@Html.DisplayFor(_ => product.Price)</td>
