@@ -49,17 +49,56 @@ namespace WebStore.Services.InMemory
 
         public int Add(Product product)
         {
-            throw new System.NotImplementedException();
+            if (product is null) throw new ArgumentNullException(nameof(product));
+
+            if (TestData.Products.Contains(product)) return product.Id; // характерно только если inMemory!!!! Для БД не нужно!
+
+            product.Id = ++_CurrentMaxId;
+            TestData.Products.ToList().Add(product);
+
+            _Logger.LogInformation("Товар id:{0} добавлен", product.Id);
+
+            return product.Id;
+
         }
 
         public void Update(Product product)
         {
-            throw new System.NotImplementedException();
+            if (product is null) throw new ArgumentNullException(nameof(product));
+
+            if (TestData.Products.Contains(product)) return; // характерно только если inMemory!!!! Для БД не нужно!
+
+            var db_item = GetProductById(product.Id);
+            if (db_item is null) return;
+            db_item.Name = product.Name;
+            db_item.Price = product.Price;
+            db_item.ImageUrl = product.ImageUrl;
+            db_item.Section = product.Section;
+            db_item.SectionId = product.SectionId;
+            db_item.Brand = product.Brand;
+            db_item.BrandId = product.BrandId;
+            db_item.Order = product.Order;
+
+            _Logger.LogInformation("Товар id:{0} отредактирован", product.Id);
         }
 
         public bool Delete(int id)
         {
-            throw new System.NotImplementedException();
+            var db_item = GetProductById(id);
+            if (db_item is null)
+            {
+                _Logger.LogWarning("При удалении товар id:{0} не найден", id);
+                return false;
+            }
+
+            var result = TestData.Products.ToList().Remove(db_item);
+
+            if (result)
+                _Logger.LogInformation("Товар id:{0} удалён", id);
+            else
+                _Logger.LogError("При удалении товар id:{0} не найден", id);
+
+            return result;
         }
     }
 }
