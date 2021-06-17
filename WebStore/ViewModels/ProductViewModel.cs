@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace WebStore.ViewModels
 {
@@ -19,5 +20,7 @@ namespace WebStore.ViewModels
         public string Brand { get; set; }
         public int BrandId { get; set; }
         public int Order { get; set; }
+        public IFormFile Image { get; set; }
+
     }
 }

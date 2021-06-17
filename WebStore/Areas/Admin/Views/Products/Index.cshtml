@@ -18,6 +18,7 @@
             <th>@Html.DisplayNameFor(m => m.Brand)</th>
             <th>@Html.DisplayNameFor(m => m.Section)</th>
             <th>@Html.DisplayNameFor(m => m.ImageUrl)</th>
+            @*<th>@Html.DisplayNameFor(m => m.Image)</th>*@
             <th>@Html.DisplayNameFor(m => m.Price)</th>
             <th></th>
         </tr>
@@ -40,6 +41,7 @@
                     <img src="@product.ImageUrl" alt="@product.Name" width="50"/>
                     @*<img class="primary-img" src="@product.ImageUrl" alt="@product.Name">*@
                 </td>
+                @*<td>@Html.DisplayFor(_ => product.Image.ToString())</td>*@
                 <td>@Html.DisplayFor(_ => product.Price)</td>
                 <td>
                     <a asp-action="Delete" asp-route-id="@product.Id" class="text-danger">

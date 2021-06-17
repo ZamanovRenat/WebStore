@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.IO;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using WebStore.Domain.Entities;
@@ -40,6 +41,7 @@ namespace WebStore.Areas.Admin.Controllers
                 //BrandId = product.BrandId,
 
             };
+
             return View(view_model);
         }
 
@@ -48,21 +50,32 @@ namespace WebStore.Areas.Admin.Controllers
         {
             _logger.LogInformation("Редактирование товара id: {0}", Model.Id);
 
-            var product = new Product
+            Product product = new Product
             {
                 Name = Model.Name,
                 Price = Model.Price,
-                ImageUrl = Model.ImageUrl,
+                ImageUrl = Model.Image.FileName.ToString(),
                 Order = Model.Order,
                 SectionId = Model.SectionId,
                 BrandId = Model.BrandId,
             };
 
+            if (Model.Image != null)
+            {
+                byte[] imageData = null;
+
+                using (var binaryReader = new BinaryReader(Model.Image.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int) Model.Image.Length);
+                }
+
+                product.ImageUrl = Model.Image.FileName.ToString();
+            }
+
             if (product.Id == 0)
                 _ProductData.Add(product);
             else 
                 _ProductData.Update(product);
-                
 
             _logger.LogInformation("Редактирование товара id:{0} завершено", Model.Id);
 
