@@ -394,6 +394,11 @@
             </div>
             <div class="col-md-9 col-sm-9">
                 <a asp-controller="Catalog" asp-action="Index">Каталог товаров</a>
+                @*<partial name="Partial/_Products" model="@ViewData["Products"]"/>*@
+                @*<partial name="Partial/_Products" model="@ViewBag.Products" />*@
+                @*<partial name="Partial/_CheckOut" model="Model.Order"
+        view-data="@(new ViewDataDictionary(ViewData) { { "TotalPrice", Model.Cart.TotalPrice } })"/>*@
+                @*<partial name="Partial/_Products" model="Model.Products" />*@
             </div>
         </div>
     </div>

@@ -22,5 +22,6 @@ namespace WebStore.Domain.Entities
         public string ImageUrl { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
+        //public byte[] Image { get; set; }
     }
 }

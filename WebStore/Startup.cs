@@ -13,6 +13,7 @@ using WebStore.Services;
 using WebStore.Services.InCookies;
 using WebStore.Services.InMemory;
 using WebStore.Services.InMemory.InSQL;
+using WebStore.Services.InSQL;
 using WebStore.Services.Interfaces;
 
 namespace WebStore
@@ -85,6 +86,9 @@ namespace WebStore
                 services.AddScoped<IProductData, SqlProductData>();
             else
                 services.AddSingleton<IProductData, InMemoryProductData>();
+
+            //Добавление сервиса заказов
+            services.AddScoped<IOrderService, SqlOrderService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
@@ -109,10 +113,16 @@ namespace WebStore
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
             });
+
         }
     }
 }

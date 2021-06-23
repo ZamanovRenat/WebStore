@@ -169,5 +169,14 @@ namespace WebStore.Data
             _Logger.LogInformation("Инициализация данных БД системы Identity выполнена за {0} c",
                 timer.Elapsed.TotalSeconds);
         }
+
+        private void AddProducts()
+        {
+            if(_db.Products.Any()) return;
+
+            TestData.Products.ToList().ForEach(e => e.Id = 0);
+            _db.Products.AddRange(TestData.Products);
+            _db.SaveChanges();
+        }
     }
 }

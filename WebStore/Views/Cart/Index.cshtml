@@ -1,4 +1,4 @@
-﻿@model WebStore.ViewModels.CartViewModel
+﻿@model WebStore.ViewModels.CartOrderViewModel
 @{
     ViewBag.Title = "Корзина";
 }
@@ -240,7 +240,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach (var (product, quantity) in Model.Items)
+                                    @foreach (var (product, quantity) in Model.Cart.Items)
                                     {
                                         <tr>
                                             <td class="text-center">
@@ -251,11 +251,11 @@
                                             </td>
                                             <td class="text-left"></td>
                                             <td class="text-left">
-                                                <a asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id">+</a>
-                                                <a asp-controller="Cart" asp-action="Decrement" asp-route-id="@product.Id">-</a>
+                                                <a class="btn btn-default update" asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id">+</a>
+                                                <a class="btn btn-default update" asp-controller="Cart" asp-action="Decrement" asp-route-id="@product.Id">-</a>
                                             </td>
                                             <td class="text-right">@product.Price.ToString("C")</td>
-                                            <td class="text-right">@Model.TotalPrice.ToString("C")</td>
+                                            <td class="text-right">@Model.Cart.TotalPrice.ToString("C")</td>
                                         </tr>
 
                                     }
@@ -364,28 +364,8 @@
                             </div>
                             <!-- Accordion end -->
                             <div class="row">
-                                <div class="col-sm-4 col-sm-offset-8">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-right">
-                                                    <strong>Sub-Total:</strong>
-                                                </td>
-                                                <td class="text-right">$145.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-right">
-                                                    <strong>Total:</strong>
-                                                </td>
-                                                <td class="text-right">$145.00</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="shopping-checkout">
-                                <a href="#" class="btn btn-default pull-left">Continue Shopping</a>
-                                <a href="#" class="btn btn-primary pull-right">Checkout</a>
+                                <partial name="Partial/_CheckOut" model="Model.Order"
+                                         view-data="@(new ViewDataDictionary(ViewData) { { "TotalPrice", Model.Cart.TotalPrice } })"/>
                             </div>
                         </div>
                     </div>
