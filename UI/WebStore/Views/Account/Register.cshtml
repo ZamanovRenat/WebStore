@@ -1,0 +1,74 @@
+﻿@model WebStore.Domain.ViewModels.RegisterUserViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!-- START PAGE-CONTENT -->
+<section class="page-content">
+
+    <!-- Start Account-Create-Area -->
+    <div class="account-create-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="area-title">
+                        <h3 class="title-group gfont-1">Create an Account</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="account-create">
+                <form asp-action="Register" asp-antiforgery="true">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="account-create-box">
+                                <h2 class="box-info">Personal Information</h2>
+                                <div class="row">
+                                    <div class="col-sm-4 col-xs-12">
+                                        <div class="single-create">
+                                            <p>User Name <sup>*</sup></p>
+                                            <input asp-for="UserName" placeholder="User Name" />
+                                            <span asp-validation-for="UserName"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <p class="for-newsletter"><input type="checkbox" /> Sign Up for Newsletter</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="account-create-box">
+                                <h2 class="box-info">Login Information</h2>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="single-create">
+                                            <p>Password <sup>*</sup></p>
+                                            <input asp-for="Password" placeholder="Password" />
+                                            <span asp-validation-for="Password"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="single-create">
+                                            <p>Confirm Password <sup>*</sup></p>
+                                            <input asp-for="PasswordConfirm" placeholder="Confirm Password" />
+                                            <span asp-validation-for="PasswordConfirm"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submit-area">
+                                <p class="required text-right">* Required Fields</p>
+                                <button type="submit" class="btn btn-primary floatright">submit</button>
+                                <a href="login.html" class="float-left"><span><i class="fa fa-angle-double-left"></i></span> Back</a>
+                            </div>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Account-Create-Area -->
+    <partial name="Partial/_BrandLogo" />
+    <partial name="Partial/_SubscribeArea"/>
+    
+</section>
+<!-- END PAGE-CONTENT -->
