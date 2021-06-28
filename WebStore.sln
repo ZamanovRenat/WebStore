@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.Services", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.WebAPI", "Services\WebStore.WebAPI\WebStore.WebAPI.csproj", "{948BEF8B-8CDD-4B0F-A3DB-3529B8AB72A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.WebAPI.Clients", "Services\WebStore.WebAPI.Clients\WebStore.WebAPI.Clients.csproj", "{1D2F4B2D-5215-4677-9058-A5549F46342A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{948BEF8B-8CDD-4B0F-A3DB-3529B8AB72A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{948BEF8B-8CDD-4B0F-A3DB-3529B8AB72A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{948BEF8B-8CDD-4B0F-A3DB-3529B8AB72A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D2F4B2D-5215-4677-9058-A5549F46342A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D2F4B2D-5215-4677-9058-A5549F46342A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D2F4B2D-5215-4677-9058-A5549F46342A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D2F4B2D-5215-4677-9058-A5549F46342A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{55C2071F-E80C-43CC-8D72-DC4097607FAC} = {FCAD79C0-90B9-493C-BF74-D078EB57C18D}
 		{A7F80072-92E7-44E2-BDFB-1BC5F0F966FD} = {FCAD79C0-90B9-493C-BF74-D078EB57C18D}
 		{948BEF8B-8CDD-4B0F-A3DB-3529B8AB72A8} = {FCAD79C0-90B9-493C-BF74-D078EB57C18D}
+		{1D2F4B2D-5215-4677-9058-A5549F46342A} = {FCAD79C0-90B9-493C-BF74-D078EB57C18D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41560DBF-A0C6-4F9C-8862-C30B5AE8C783}
