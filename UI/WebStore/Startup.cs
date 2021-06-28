@@ -9,11 +9,13 @@ using Microsoft.Extensions.Hosting;
 using WebStore.DAL.Context;
 using WebStore.Domain.Entities.Identity;
 using WebStore.Interfaces.Services;
+using WebStore.Interfaces.TestAPI;
 using WebStore.Services;
 using WebStore.Services.Data;
 using WebStore.Services.Services.InCookies;
 using WebStore.Services.Services.InMemory;
 using WebStore.Services.Services.InMemory.InSQL;
+using WebStore.WebAPI.Clients.Values;
 
 namespace WebStore
 {
@@ -88,6 +90,8 @@ namespace WebStore
 
             //Добавление сервиса заказов
             services.AddScoped<IOrderService, SqlOrderService>();
+
+            services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
