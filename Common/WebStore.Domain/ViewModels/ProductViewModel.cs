@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
-namespace WebStore.ViewModels
+namespace WebStore.Domain.ViewModels
 {
     
     public class ProductViewModel
