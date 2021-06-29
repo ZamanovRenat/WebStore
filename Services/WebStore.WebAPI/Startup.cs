@@ -13,7 +13,6 @@ using WebStore.Interfaces.Services;
 using WebStore.Services.Data;
 using WebStore.Services.Services.InCookies;
 using WebStore.Services.Services.InMemory.InSQL;
-using WebStore.Services.Services.InSQL;
 
 namespace WebStore.WebAPI
 {

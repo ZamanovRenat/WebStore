@@ -15,7 +15,6 @@ using WebStore.Services.Data;
 using WebStore.Services.Services.InCookies;
 using WebStore.Services.Services.InMemory;
 using WebStore.Services.Services.InMemory.InSQL;
-using WebStore.Services.Services.InSQL;
 using WebStore.WebAPI.Clients.Employees;
 using WebStore.WebAPI.Clients.Products;
 using WebStore.WebAPI.Clients.Values;
