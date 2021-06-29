@@ -17,6 +17,7 @@ using WebStore.Services.Services.InMemory;
 using WebStore.Services.Services.InMemory.InSQL;
 using WebStore.Services.Services.InSQL;
 using WebStore.WebAPI.Clients.Employees;
+using WebStore.WebAPI.Clients.Products;
 using WebStore.WebAPI.Clients.Values;
 
 namespace WebStore
@@ -84,7 +85,7 @@ namespace WebStore
             //Добавляем сервис управления брэндами и секциями
             //services.AddSingleton<IProductData, InMemoryProductData>();
 
-                services.AddScoped<IProductData, SqlProductData>();
+               // services.AddScoped<IProductData, SqlProductData>();
 
 
             //Добавление сервиса заказов
@@ -92,6 +93,7 @@ namespace WebStore
 
             services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"])); 
             services.AddHttpClient<IEmployeesData, EmployeesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
+            services.AddHttpClient<IProductData, ProductsClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
