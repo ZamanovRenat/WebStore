@@ -16,6 +16,7 @@ using WebStore.Services.Services.InCookies;
 using WebStore.Services.Services.InMemory;
 using WebStore.Services.Services.InMemory.InSQL;
 using WebStore.WebAPI.Clients.Employees;
+using WebStore.WebAPI.Clients.Orders;
 using WebStore.WebAPI.Clients.Products;
 using WebStore.WebAPI.Clients.Values;
 
@@ -88,11 +89,12 @@ namespace WebStore
 
 
             //Добавление сервиса заказов
-            services.AddScoped<IOrderService, SqlOrderService>();
+            //services.AddScoped<IOrderService, SqlOrderService>();
 
             services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"])); 
             services.AddHttpClient<IEmployeesData, EmployeesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
             services.AddHttpClient<IProductData, ProductsClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
+            services.AddHttpClient<IOrderService, OrdersClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
