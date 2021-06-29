@@ -9,9 +9,9 @@ using WebStore.Services.Data;
 
 namespace WebStore.Services.Services.InMemory
 {
+    [Obsolete("Поддержка класса размещения товаров в памяти прекращена", true)]
     public class InMemoryProductData : IProductData
     {
-
         private readonly ILogger<InMemoryProductData> _Logger;
         private int _CurrentMaxId;
 
@@ -20,33 +20,31 @@ namespace WebStore.Services.Services.InMemory
             _Logger = Logger;
             _CurrentMaxId = TestData.Products.Max(i => i.Id);
         }
-        public IEnumerable<Brand> GetBrands()
-        {
-            return TestData.Brands;
-        }
-        public IEnumerable<Section> GetSections()
-        {
-            return TestData.Sections;
-        }
+        public IEnumerable<Section> GetSections() => TestData.Sections;
+
+        public Section GetSection(int id) => throw new NotSupportedException();
+
+        public IEnumerable<Brand> GetBrands() => TestData.Brands;
+
+        public Brand GetBrand(int id) => throw new NotSupportedException();
 
         public IEnumerable<Product> GetProducts(ProductFilter Filter = null)
         {
             IEnumerable<Product> query = TestData.Products;
 
+            //if(Filter?.SectionId != null)
+            //    query = query.Where(product => product.SectionId == Filter.SectionId);
+
             if (Filter?.SectionId is { } section_id)
                 query = query.Where(product => product.SectionId == section_id);
 
-            if(Filter?.BrandId is { } brand_id)
+            if (Filter?.BrandId is { } brand_id)
                 query = query.Where(product => product.BrandId == brand_id);
-            
+
             return query;
         }
 
-        public Product GetProductById(int Id)
-        {
-            return TestData.Products.FirstOrDefault(p => p.Id == Id);
-        }
-
+        public Product GetProductById(int Id) => TestData.Products.SingleOrDefault(p => p.Id == Id);
         public int Add(Product product)
         {
             if (product is null) throw new ArgumentNullException(nameof(product));
