@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using WebStore.Domain;
 using WebStore.Domain.DTO;
 using WebStore.Domain.Entities;
+using WebStore.Domain.Models;
 using WebStore.Interfaces;
 using WebStore.Interfaces.Services;
 using WebStore.WebAPI.Clients.Base;
@@ -30,5 +31,22 @@ namespace WebStore.WebAPI.Clients.Products
         }
 
         public Product GetProductById(int Id) => Get<ProductDTO>($"{Address}/{Id}").FromDTO();
+        public int Add(Product product)
+        {
+            var response = Post(Address, product);
+            var id = response.Content.ReadFromJsonAsync<int>().Result;
+            return id;
+        }
+
+        public void Update(Product product)
+        {
+            Put(Address, product);
+        }
+
+        public bool Delete(int id)
+        {
+            var result = Delete($"{Address}/{id}").IsSuccessStatusCode;
+            return result;
+        }
     }
 }
