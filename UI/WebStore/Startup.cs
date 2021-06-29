@@ -15,6 +15,8 @@ using WebStore.Services.Data;
 using WebStore.Services.Services.InCookies;
 using WebStore.Services.Services.InMemory;
 using WebStore.Services.Services.InMemory.InSQL;
+using WebStore.Services.Services.InSQL;
+using WebStore.WebAPI.Clients.Employees;
 using WebStore.WebAPI.Clients.Values;
 
 namespace WebStore
@@ -88,7 +90,8 @@ namespace WebStore
             //Добавление сервиса заказов
             services.AddScoped<IOrderService, SqlOrderService>();
 
-            services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
+            services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"])); 
+            services.AddHttpClient<IEmployeesData, EmployeesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
