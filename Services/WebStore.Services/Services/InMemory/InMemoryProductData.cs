@@ -9,6 +9,8 @@ using WebStore.Services.Data;
 
 namespace WebStore.Services.Services.InMemory
 {
+
+    [Obsolete("Поддержка класса размещения товаров в памяти прекращена", true)]
     public class InMemoryProductData : IProductData
     {
 

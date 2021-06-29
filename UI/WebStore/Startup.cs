@@ -73,8 +73,6 @@ namespace WebStore
                 opt.SlidingExpiration = true;
             });
             
-            //Добавляем сервис управления сотрудниками
-            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             
             //Добавление сервиса корзины
             services.AddScoped<ICartService, InCookiesCartService>();
@@ -83,10 +81,9 @@ namespace WebStore
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             //Добавляем сервис управления брэндами и секциями
             //services.AddSingleton<IProductData, InMemoryProductData>();
-            if (Configuration["ProductsDataSource"] == "db")
+
                 services.AddScoped<IProductData, SqlProductData>();
-            else
-                services.AddSingleton<IProductData, InMemoryProductData>();
+
 
             //Добавление сервиса заказов
             services.AddScoped<IOrderService, SqlOrderService>();
