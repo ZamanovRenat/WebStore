@@ -85,16 +85,22 @@ namespace WebStore
             //Добавляем сервис управления брэндами и секциями
             //services.AddSingleton<IProductData, InMemoryProductData>();
 
-               // services.AddScoped<IProductData, SqlProductData>();
+            // services.AddScoped<IProductData, SqlProductData>();
 
 
             //Добавление сервиса заказов
             //services.AddScoped<IOrderService, SqlOrderService>();
 
-            services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"])); 
-            services.AddHttpClient<IEmployeesData, EmployeesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
-            services.AddHttpClient<IProductData, ProductsClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
-            services.AddHttpClient<IOrderService, OrdersClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
+            //services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"])); 
+            //services.AddHttpClient<IEmployeesData, EmployeesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
+            //services.AddHttpClient<IProductData, ProductsClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
+            //services.AddHttpClient<IOrderService, OrdersClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
+            services.AddHttpClient("WebStoreAPI", client => client.BaseAddress = new Uri(Configuration["WebAPI"]))
+                .AddTypedClient<IValuesService, ValuesClient>()
+                .AddTypedClient<IEmployeesData, EmployeesClient>()
+                .AddTypedClient<IProductData, ProductsClient>()
+                .AddTypedClient<IOrderService, OrdersClient>()
+                ;
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
