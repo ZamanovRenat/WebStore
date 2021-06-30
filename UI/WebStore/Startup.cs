@@ -34,11 +34,11 @@ namespace WebStore
         public void ConfigureServices(IServiceCollection services)
         {
             //Подключение контекста базы данных
-            services.AddDbContext<WebStoreDB>(opt => 
-                opt.UseSqlServer(Configuration.GetConnectionString("MSSQL")));
+            //services.AddDbContext<WebStoreDB>(opt => 
+            //    opt.UseSqlServer(Configuration.GetConnectionString("MSSQL")));
             
-            //AddTransient удаляет объект после использования
-            services.AddTransient<WebStoreDBInitializer>();
+            ////AddTransient удаляет объект после использования
+            //services.AddTransient<WebStoreDBInitializer>();
 
             //Подключение идентификации
             services.AddIdentity<User, Role>()
@@ -117,11 +117,11 @@ namespace WebStore
                 ;
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env/*, IServiceProvider services*/)
         {
             //Создание отдельной области через которую инициальзируется БД, после объект уничтожается
-            using (var scope = services.CreateScope())
-                scope.ServiceProvider.GetRequiredService<WebStoreDBInitializer>().Initialize();
+            //using (var scope = services.CreateScope())
+            //    scope.ServiceProvider.GetRequiredService<WebStoreDBInitializer>().Initialize();
 
             if (env.IsDevelopment())
             {
