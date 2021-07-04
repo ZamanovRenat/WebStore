@@ -16,6 +16,7 @@ using WebStore.Services.Services.InCookies;
 using WebStore.Services.Services.InMemory;
 using WebStore.Services.Services.InMemory.InSQL;
 using WebStore.WebAPI.Clients.Employees;
+using WebStore.WebAPI.Clients.Identity;
 using WebStore.WebAPI.Clients.Orders;
 using WebStore.WebAPI.Clients.Products;
 using WebStore.WebAPI.Clients.Values;
@@ -32,17 +33,23 @@ namespace WebStore
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            //Подключение контекста базы данных
-            services.AddDbContext<WebStoreDB>(opt => 
-                opt.UseSqlServer(Configuration.GetConnectionString("MSSQL")));
-            
-            //AddTransient удаляет объект после использования
-            services.AddTransient<WebStoreDBInitializer>();
-
             //Подключение идентификации
             services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<WebStoreDB>()
+                .AddIdentityWebStoreWebAPIClients()
                 .AddDefaultTokenProviders();
+            //services.AddHttpClient("WebStoreAPIIdentity", client => client.BaseAddress = new Uri(Configuration["WebAPI"]))
+            //   .AddTypedClient<IUserStore<User>, UsersClient>()
+            //   .AddTypedClient<IUserRoleStore<User>, UsersClient>()
+            //   .AddTypedClient<IUserPasswordStore<User>, UsersClient>()
+            //   .AddTypedClient<IUserEmailStore<User>, UsersClient>()
+            //   .AddTypedClient<IUserPhoneNumberStore<User>, UsersClient>()
+            //   .AddTypedClient<IUserTwoFactorStore<User>, UsersClient>()
+            //   .AddTypedClient<IUserClaimStore<User>, UsersClient>()
+            //   .AddTypedClient<IUserLoginStore<User>, UsersClient>()
+            //   .AddTypedClient<IRoleStore<Role>, RolesClient>()
+            //    ;
+            services.AddIdentityWebStoreWebAPIClients();
+
 
             //Конфигурирование Identity
             services.Configure<IdentityOptions>(opt =>
@@ -83,18 +90,7 @@ namespace WebStore
             //Добавляем сервисы, необходимые для mvc
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             //Добавляем сервис управления брэндами и секциями
-            //services.AddSingleton<IProductData, InMemoryProductData>();
 
-            // services.AddScoped<IProductData, SqlProductData>();
-
-
-            //Добавление сервиса заказов
-            //services.AddScoped<IOrderService, SqlOrderService>();
-
-            //services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"])); 
-            //services.AddHttpClient<IEmployeesData, EmployeesClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
-            //services.AddHttpClient<IProductData, ProductsClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
-            //services.AddHttpClient<IOrderService, OrdersClient>(client => client.BaseAddress = new Uri(Configuration["WebAPI"]));
             services.AddHttpClient("WebStoreAPI", client => client.BaseAddress = new Uri(Configuration["WebAPI"]))
                 .AddTypedClient<IValuesService, ValuesClient>()
                 .AddTypedClient<IEmployeesData, EmployeesClient>()
@@ -103,11 +99,8 @@ namespace WebStore
                 ;
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //Создание отдельной области через которую инициальзируется БД, после объект уничтожается
-            using (var scope = services.CreateScope())
-                scope.ServiceProvider.GetRequiredService<WebStoreDBInitializer>().Initialize();
 
             if (env.IsDevelopment())
             {
