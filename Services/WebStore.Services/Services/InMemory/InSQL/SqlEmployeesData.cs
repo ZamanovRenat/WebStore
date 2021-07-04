@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using WebStore.DAL.Context;
-using WebStore.Domain.Models;
+using WebStore.Domain.Entities;
 using WebStore.Interfaces.Services;
 
 namespace WebStore.Services.Services.InMemory.InSQL
@@ -31,7 +31,7 @@ namespace WebStore.Services.Services.InMemory.InSQL
 
             _db.SaveChanges();
 
-            _logger.LogInformation($"Сотрудник {employee.LastName} {employee.FirstName} {employee.Patronymic} добавлен");
+            _logger.LogInformation($"Сотрудник {employee} добавлен");
 
             return employee.Id;
         }
@@ -44,7 +44,7 @@ namespace WebStore.Services.Services.InMemory.InSQL
 
             _db.SaveChanges();
 
-            _logger.LogInformation($"Сотрудник {employee.LastName} {employee.FirstName} {employee.Patronymic} отредактирован");
+            _logger.LogInformation($"Сотрудник {employee} отредактирован");
         }
 
         public bool Delete(int id)
@@ -59,7 +59,7 @@ namespace WebStore.Services.Services.InMemory.InSQL
 
             _db.SaveChanges();
 
-            _logger.LogInformation($"Сотрудник {employee.LastName} {employee.FirstName} {employee.Patronymic} удален");
+            _logger.LogInformation($"Сотрудник {employee} удален");
 
             return true;
         }
