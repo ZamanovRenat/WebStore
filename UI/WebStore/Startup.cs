@@ -14,6 +14,7 @@ using WebStore.Interfaces.TestAPI;
 using WebStore.Logger;
 using WebStore.Services;
 using WebStore.Services.Data;
+using WebStore.Services.Services;
 using WebStore.Services.Services.InCookies;
 using WebStore.Services.Services.InMemory;
 using WebStore.Services.Services.InMemory.InSQL;
@@ -84,10 +85,12 @@ namespace WebStore
 
                 opt.SlidingExpiration = true;
             });
-            
-            
+
+
             //Добавление сервиса корзины
-            services.AddScoped<ICartService, InCookiesCartService>();
+            //services.AddScoped<ICartService, InCookiesCartService>();
+            services.AddScoped<ICartStore, InCookiesCartStore>();
+            services.AddScoped<ICartService, CartService>();
 
             //Добавляем сервисы, необходимые для mvc
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
