@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using WebStore.Domain.Entities;
-using WebStore.Domain.Models;
 using WebStore.Interfaces;
 using WebStore.Interfaces.Services;
 using WebStore.WebAPI.Clients.Base;
