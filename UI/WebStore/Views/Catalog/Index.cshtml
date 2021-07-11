@@ -7,11 +7,14 @@
 <!-- START PAGE-CONTENT -->
 <section class="page-content">
     <div class="container">
+        
+        <vc:bread-crumbs/>
+
         <div class="row">
             <div class="col-md-3">
                 <!-- CATEGORY-MENU-LIST START -->
-                <vc:sections />
-                <vc:brands />
+                <vc:sections/>
+                <vc:brands/>
                 <!-- END CATEGORY-MENU-LIST -->
                 <!-- shop-filter start -->
                 <div class="shop-filter">
@@ -23,8 +26,8 @@
                         <div class="price_filter">
                             <div id="slider-range"></div>
                             <div class="price_slider_amount">
-                                <input type="text" id="amount" name="price" placeholder="Add Your Price" />
-                                <input type="submit" value="Filter" />
+                                <input type="text" id="amount" name="price" placeholder="Add Your Price"/>
+                                <input type="submit" value="Filter"/>
                             </div>
                         </div>
                     </div>
@@ -89,7 +92,7 @@
                 </div>
                 <!-- END PRODUCT-BANNER -->
                 <!-- START PRODUCT-AREA -->
-                <partial name="Partial/_Products" model="Model.Products" />
+                <partial name="Partial/_Products" model="Model.Products"/>
                 <!-- END PRODUCT-AREA -->
             </div>
         </div>
