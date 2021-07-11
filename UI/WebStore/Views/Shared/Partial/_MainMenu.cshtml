@@ -29,7 +29,7 @@
                             </li>
                             <li><a asp-controller="Home" asp-action="Contact">Contact Us</a></li>
                             <li><a asp-controller="Employees" asp-action="Index">Сотрудники</a></li>
-                            <li><a asp-controller="WebAPI" asp-action="Index">WebAPI</a></li>
+                            <li><a asp-controller="WebAPI" asp-action="Index" class="@IsActive("WebAPI")">WebAPI</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -37,4 +37,12 @@
         </div>
     </div>
 </div>
-<!-- END MAIN-MENU-AREA -->
+    <!-- END MAIN-MENU-AREA -->
+    @functions
+    {
+        string IsActive(string controller, string action = "Index") =>
+            Equals(ViewContext.RouteData.Values["Controller"], controller) &&
+            Equals(ViewContext.RouteData.Values["Action"], action)
+                ? "active"
+                : null;
+    }
