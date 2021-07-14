@@ -237,6 +237,7 @@
                                             <td class="text-left">Quantity</td>
                                             <td class="text-right">Unit Price</td>
                                             <td class="text-right">Total</td>
+                                            <td class="text-center">Remove</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -259,7 +260,14 @@
                                                 </a>
                                             </td>
                                             <td class="text-right" data-price="@product.Price">@product.Price.ToString("C")</td>
-                                            <td class="text-right">@Model.Cart.TotalPrice.ToString("C")</td>
+                                            <td class="text-right cart_total_price" data-price="@(product.Price * quantity)">@((product.Price * quantity).ToString("C"))</td>
+                                            <td class="cart_delete">
+                                                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@product.Id"
+                                                   data-id="@product.Id"
+                                                   class="cart_quantity_delete">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </td>
                                         </tr>
 
                                     }
