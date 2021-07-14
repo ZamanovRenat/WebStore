@@ -111,27 +111,6 @@
 
                             </div>
                         </div>
-                        <!-- Start Pagination Area -->
-                        <div class="pagination-area">
-                            <div class="row">
-                                <div class="col-xs-5">
-                                    <div class="pagination">
-                                        <ul>
-                                            <li class="active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">></a></li>
-                                            <li><a href="#">>|</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-xs-7">
-                                    <div class="product-result">
-                                        <span>Showing 1 to 16 of 19 (2 Pages)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Pagination Area -->
                     </div>
                     <!-- End Product -->
                     <!-- Start Product-->
@@ -176,7 +155,11 @@
                                         <div class="product-action">
                                             <div class="button-group">
                                                 <div class="product-button">
-                                                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
+                                                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id" 
+                                                       data-id="@product.Id"
+                                                       class="btn btn-default quick-add-to-cart">
+                                                        <i class="fa fa-shopping-cart"></i>Add to Cart
+                                                    </a>
                                                 </div>
                                                 <div class="product-button-2">
                                                     <a href="#" data-toggle="tooltip" title="Wishlist"><i class="fa fa-heart-o"></i></a>
@@ -193,27 +176,6 @@
 
 
                         </div>
-                        <!-- Start Pagination Area -->
-                        <div class="pagination-area">
-                            <div class="row">
-                                <div class="col-xs-5">
-                                    <div class="pagination">
-                                        <ul>
-                                            <li class="active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">></a></li>
-                                            <li><a href="#">>|</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-xs-7">
-                                    <div class="product-result">
-                                        <span>Showing 1 to 16 of 19 (2 Pages)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Pagination Area -->
                     </div>
                     <!-- End Product = TV -->
                 </div>

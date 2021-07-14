@@ -92,7 +92,15 @@
                 </div>
                 <!-- END PRODUCT-BANNER -->
                 <!-- START PRODUCT-AREA -->
-                <partial name="Partial/_Products" model="Model.Products"/>
+                <partial name="Partial/_Products" model="Model.Products" />
+
+                <pageing page-model="Model.PageViewModel"
+                         page-action="Index"
+                         page-url-SectionId="@Model.SectionId"
+                         page-url-BrandId="@Model.BrandId"
+                         page-url-PageSize="@Context.Request.Query["PageSize"]">
+                </pageing>
+
                 <!-- END PRODUCT-AREA -->
             </div>
         </div>

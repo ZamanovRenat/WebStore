@@ -365,7 +365,11 @@
         <div class="product-quantity">
             <span>Qty</span>
             <input type="number" placeholder="1"/>
-            <a asp-controller="Cart" asp-action="Add"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+            <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" 
+               data-id="@Model.Id"
+               class="btn btn-default quick-add-to-cart">
+                <i class="fa fa-shopping-cart"></i>Add to cart
+            </a>
             <hr/>
         </div>
     </div>
