@@ -22,7 +22,7 @@ namespace WebStore.Areas.Admin.Controllers
             _logger = Logger;
         }
 
-        public IActionResult Index() => View(_ProductData.GetProducts());
+        public IActionResult Index() => View(_ProductData.GetProducts().Products);
         public IActionResult Create() => View("Edit", new ProductViewModel());
 
         public IActionResult Edit(int id)
