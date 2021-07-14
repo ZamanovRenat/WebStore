@@ -251,10 +251,14 @@
                                             </td>
                                             <td class="text-left"></td>
                                             <td class="text-left">
-                                                <a class="btn btn-default update" asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id">+</a>
-                                                <a class="btn btn-default update" asp-controller="Cart" asp-action="Decrement" asp-route-id="@product.Id">-</a>
+                                                <a class="btn btn-default cart-quantity_up" asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id" data-id="@product.Id">
+                                                    +
+                                                </a>
+                                                <a class="btn btn-default cart-quantity_down" asp-controller="Cart" asp-action="Decrement" asp-route-id="@product.Id" data-id="@product.Id">
+                                                    -
+                                                </a>
                                             </td>
-                                            <td class="text-right">@product.Price.ToString("C")</td>
+                                            <td class="text-right" data-price="@product.Price">@product.Price.ToString("C")</td>
                                             <td class="text-right">@Model.Cart.TotalPrice.ToString("C")</td>
                                         </tr>
 
