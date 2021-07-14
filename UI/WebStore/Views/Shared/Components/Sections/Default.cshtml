@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebStore.Domain.ViewModels.SectionViewModel>           
+﻿@model WebStore.ViewModels.SelectableSectionsViewModel           
 
  <!-- CATEGORY-MENU-LIST START -->
 <div class="left-category-menu hidden-sm hidden-xs">
@@ -10,7 +10,7 @@
         
         <div class="category-menu-list">
 
-            @foreach (var parent_section in Model)
+            @foreach (var parent_section in Model.Sections)
             {
                 if (parent_section.ChildSections.Count > 0)
                 {
@@ -29,12 +29,12 @@
                         <!--  MEGA MENU START -->
 
 
-                        <div class="cat-left-drop-menu" id="@parent_section.GetHashCode()">
+                        <div id="@parent_section.GetHashCode()" class="panel-collapse collapse @(parent_section.Id == Model.ParentSectionId ? "in" : null)">
                             <div class="cat-left-drop-menu-left">
                                 <ul>
                                     @foreach (var child_section in parent_section.ChildSections)
                                     {
-                                        <li>
+                                        <li @(child_section.Id == Model.SectionId ? "class=active" : null)>
                                             <a asp-controller="Catalog" asp-action="Index"
                                                asp-route-SectionId="@child_section.Id">
                                                 @child_section.Name

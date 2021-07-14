@@ -23,9 +23,11 @@
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="5.0.1" />
+    <PackageReference Include="SimpleMvcSitemap" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\Components\BreadCrumbs\Default.cshtml" />
     <None Include="Views\Shared\Partial\_QuickView.cshtml" />
     <None Include="wwwroot\admin\fonts\fontawesome-webfont.svg" />
     <None Include="wwwroot\admin\fonts\glyphicons-halflings-regular.svg" />

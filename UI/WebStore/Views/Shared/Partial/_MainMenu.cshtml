@@ -7,29 +7,29 @@
                     <nav>
                         <ul>
                             <li>
-                                <a asp-controller="Home" asp-action="Index">Home</a>
+                                <a ws-is-active-route asp-controller="Home" asp-action="Index">Home</a>
 
                             </li>
-                            <li><a asp-controller="Home" asp-action="About">About Us</a></li>
-                            <li class="hot"><a asp-controller="Catalog" asp-action="Index">Bestseller Products</a></li>
-                            <li class="new"><a asp-controller="Home" asp-action="ShopList">New Products</a></li>
-                            <li><a asp-controller="Catalog" asp-action="Index">Special Products</a></li>
+                            <li><a ws-is-active-route asp-controller="Home" asp-action="About">About Us</a></li>
+                            <li class="hot"><a ws-is-active-route asp-controller="Catalog" asp-action="Index">Bestseller Products</a></li>
+                            <li class="new"><a ws-is-active-route asp-controller="Home" asp-action="ShopList">New Products</a></li>
+                            <li><a ws-is-active-route ws-ignore-action asp-controller="Catalog" asp-action="Index">Special Products</a></li>
                             <li>
                                 <a href="#">Pages</a>
                                 <ul>
-                                    <li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
-                                    <li><a asp-controller="Account" asp-action="Logout">Checkout</a></li>
-                                    <li><a asp-controller="Account" asp-action="Register">Create </a></li>
-                                    <li><a asp-controller="Home" asp-action="MyAccount">My Account</a></li>
-                                    <li><a asp-controller="Home" asp-action="ProductDetails">Product details</a></li>
-                                    <li><a asp-controller="Catalog" asp-action="Index">Shop Grid View</a></li>
-                                    <li><a asp-controller="Home" asp-action="ShopList">Shop List View</a></li>
-                                    <li><a asp-controller="Home" asp-action="WishList">Wish List</a></li>
+                                    <li><a ws-is-active-route asp-controller="Cart" asp-action="Index">Cart</a></li>
+                                    <li><a ws-is-active-route asp-controller="Account" asp-action="Logout">Checkout</a></li>
+                                    <li><a ws-is-active-route asp-controller="Account" asp-action="Register">Create </a></li>
+                                    <li><a ws-is-active-route asp-controller="Home" asp-action="MyAccount">My Account</a></li>
+                                    <li><a ws-is-active-route asp-controller="Home" asp-action="ProductDetails">Product details</a></li>
+                                    <li><a ws-is-active-route asp-controller="Catalog" asp-action="Index">Shop Grid View</a></li>
+                                    <li><a ws-is-active-route asp-controller="Home" asp-action="ShopList">Shop List View</a></li>
+                                    <li><a ws-is-active-route asp-controller="Home" asp-action="WishList">Wish List</a></li>
                                 </ul>
                             </li>
-                            <li><a asp-controller="Home" asp-action="Contact">Contact Us</a></li>
-                            <li><a asp-controller="Employees" asp-action="Index">Сотрудники</a></li>
-                            <li><a asp-controller="WebAPI" asp-action="Index">WebAPI</a></li>
+                            <li><a ws-is-active-route asp-controller="Home" asp-action="Contact">Contact Us</a></li>
+                            <li><a ws-is-active-route asp-controller="Employees" asp-action="Index">Сотрудники</a></li>
+                            <li><a ws-is-active-route asp-controller="WebAPI" asp-action="Index" class="@IsActive("WebAPI")">WebAPI</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -37,4 +37,12 @@
         </div>
     </div>
 </div>
-<!-- END MAIN-MENU-AREA -->
+    <!-- END MAIN-MENU-AREA -->
+    @functions
+    {
+        string IsActive(string controller, string action = "Index") =>
+            Equals(ViewContext.RouteData.Values["Controller"], controller) &&
+            Equals(ViewContext.RouteData.Values["Action"], action)
+                ? "active"
+                : null;
+    }
