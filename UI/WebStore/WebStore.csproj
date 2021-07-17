@@ -36,6 +36,7 @@
     <None Include="wwwroot\admin\js\custom.js" />
     <None Include="wwwroot\admin\js\jquery-1.10.2.js" />
     <None Include="wwwroot\js\Cart\CartLogik.js" />
+    <None Include="wwwroot\js\Catalog\CatalogLogik.js" />
   </ItemGroup>
 
   <ItemGroup>
