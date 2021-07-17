@@ -9,11 +9,14 @@
     {
       "library": "twitter-bootstrap@3.3.6",
       "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "library": "font-awesome@4.5.0",
+      "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "jquery-loading-overlay@2.1.7",
+      "destination": "wwwroot/lib/jquery-loading-overlay/"
     }
-  ,
-{
-  "library": "font-awesome@4.5.0",
-  "destination": "wwwroot/lib/font-awesome/"
-}
-]
+  ]
 }
