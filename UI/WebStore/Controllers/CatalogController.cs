@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using WebStore.Domain;
@@ -10,6 +11,8 @@ namespace WebStore.Controllers
 {
     public class CatalogController : Controller
     {
+        private const string _PageSizeConfigName = "CatalogPageSize";
+
         private readonly IProductData _ProductData;
         private readonly IConfiguration _configuration;
 
@@ -55,5 +58,17 @@ namespace WebStore.Controllers
 
             return View(product.ToView());
         }
+        public IActionResult GetFeaturesItems(int? BrandId, int? SectionId, int Page = 1, int? PageSize = null) =>
+            PartialView("Partial/_Products", GetProducts(BrandId, SectionId, Page, PageSize));
+
+        private IEnumerable<ProductViewModel> GetProducts(int? BrandId, int? SectionId, int Page, int? PageSize) =>
+            _ProductData.GetProducts(
+                new ProductFilter
+                {
+                    BrandId = BrandId,
+                    SectionId = SectionId,
+                    Page = Page,
+                    PageSize = PageSize ?? _configuration.GetValue(_PageSizeConfigName, 6),
+                }).Products.OrderBy(p => p.Order).ToView();
     }
 }

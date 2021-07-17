@@ -92,7 +92,9 @@
                 </div>
                 <!-- END PRODUCT-BANNER -->
                 <!-- START PRODUCT-AREA -->
-                <partial name="Partial/_Products" model="Model.Products" />
+                <div id="catalog-items-container">
+                    <partial name="Partial/_Products" model="Model.Products" />
+                </div>
 
                 <pageing page-model="Model.PageViewModel"
                          page-action="Index"
