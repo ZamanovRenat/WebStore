@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\AjaxTest\Partial\_DataView.cshtml" />
     <None Include="Views\Shared\Components\BreadCrumbs\Default.cshtml" />
     <None Include="Views\Shared\Components\Cart\Default.cshtml" />
     <None Include="Views\Shared\Partial\_QuickView.cshtml" />
