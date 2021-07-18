@@ -17,6 +17,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 
     @await Html.PartialAsync("Partial/_Styles")
+    @await RenderSectionAsync("Styles", false)
 
 </head>
 <body>
@@ -27,5 +28,6 @@
     <partial name="Partial/_Footer" />
     <partial name="Partial/_QuickView" />
     <partial name="Partial/_Scripts" />
+    @await RenderSectionAsync("Scripts", false)
 </body>
 </html>
